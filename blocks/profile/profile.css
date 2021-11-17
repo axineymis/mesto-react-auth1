@@ -1,0 +1,11 @@
+.profile {
+  position: relative;
+  display: flex;
+  max-width: 880px;
+  min-height: 128px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 36px;
+  outline: solid red 1px;
+}
