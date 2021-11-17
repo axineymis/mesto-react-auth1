@@ -9,3 +9,12 @@
   color: #ffffff;
   outline: red solid 1px;
 }
+
+@media screen and (max-width: 800px) {
+  .profile__name {
+    font-size: 35px;
+    line-height: 40px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}
