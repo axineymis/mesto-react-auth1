@@ -32,8 +32,14 @@
 @media screen and (max-width: 500px) {
   .profile__name {
     display: flex;
-   
     font-size: 27px;
     line-height: 33px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile__name {
+    display: flex;
+    justify-content: end;
   }
 }

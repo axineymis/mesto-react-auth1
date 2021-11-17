@@ -16,20 +16,19 @@
 @media screen and (max-width: 600px) {
   .profile__avatar {
   display: flex;
-  margin-left: 100px;
-  
+  margin-left: 80px;
   }
 }
 
 @media screen and (max-width: 500px) {
   .profile__avatar {
   display: flex;
-  margin-left: 80px;
+  /* margin-left: 100px; */
   }
 }
 @media screen and (max-width: 400px) {
   .profile__avatar {
   display: flex;
-  margin-left: 70px;
+ 
   }
 }
