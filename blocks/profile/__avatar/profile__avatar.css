@@ -4,6 +4,7 @@
   margin-right: 26.5px;
   box-sizing: border-box;
   border-radius: 50%;
+  margin-top: 6px;
 }
 
 @media screen and (max-width: 800px) {

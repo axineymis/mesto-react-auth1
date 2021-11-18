@@ -12,8 +12,7 @@
 
 @media screen and (max-width: 800px) {
   .profile__text {
-    font-size: 13px;
-    line-height: 15px;
+    
     margin-bottom: 15px;
   }
 }
@@ -30,6 +29,8 @@
   .profile__text {
     display: flex;
     padding-right: 25px;
+    font-size: 13px;
+    line-height: 15px;
   }
 }
 
