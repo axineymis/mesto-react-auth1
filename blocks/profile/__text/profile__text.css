@@ -12,7 +12,6 @@
 
 @media screen and (max-width: 800px) {
   .profile__text {
-    
     margin-bottom: 15px;
   }
 }
@@ -21,7 +20,6 @@
   .profile__text {
     display: flex;
     justify-content: center;
-    
   }
 }
 
@@ -38,6 +36,5 @@
   .profile__text {
     display: flex;
     justify-content: end;
-    
   }
 }

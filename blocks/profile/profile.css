@@ -16,11 +16,13 @@
     max-width: calc(100% - 96px); 
   }
 }
+
 @media screen and (max-width: 700px) {
   .profile {
     display: block;
   }
 }
+
 @media screen and (max-width: 500px) {
   .profile {
     max-width: calc(100% - 38px); 
