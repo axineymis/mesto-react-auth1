@@ -7,7 +7,7 @@
   margin-top: 0;
   margin-bottom: 25px;
   color: #FFFFFF;
-  outline: red solid 1px;
+  /* outline: red solid 1px; */
 }
 
 @media screen and (max-width: 800px) {
