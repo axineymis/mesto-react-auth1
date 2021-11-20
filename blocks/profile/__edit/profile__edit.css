@@ -5,10 +5,6 @@
 
 @media screen and (max-width: 600px) {
   .profile__edit {
-    width: 18px;
-    height: 18px;
     padding: 5px;
-    width: 10px;
-    height: 10px;
   }
 }  

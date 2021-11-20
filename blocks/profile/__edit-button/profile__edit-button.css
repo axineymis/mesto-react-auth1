@@ -19,14 +19,14 @@
 
 @media screen and (max-width: 800px) {
   .profile__edit-button {
-    margin-top: 30px; 
+    margin-top: 30px;
     margin-left: 0;
   }
 }
 
 @media screen and (max-width: 400px) {
   .profile__edit-button {
-    margin-top: 30px; 
+    margin-top: 30px;
     margin-left: 10px;
   }
 }
