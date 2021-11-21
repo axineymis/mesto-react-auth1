@@ -11,11 +11,11 @@ const addButton = document.querySelector('.profile__add');
 function openPopup() {
     nameInput.value = profileName.textContent;
     textInput.value = profileText.textContent;
-    formContent.style.display = 'flex'
+    formContent.classList.add("popup_open")
 }
 
 function closePopup() {
-    formContent.style.display = 'none'
+    formContent.classList.remove("popup_open")
 }
 
 editButton.addEventListener('click', openPopup);
