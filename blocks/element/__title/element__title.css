@@ -7,4 +7,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin-bottom: 29px;
+  margin-top: 22px;
+}
+
+@media screen and (max-width: 500px) {
+  .element__title{
+    
+  }
 }

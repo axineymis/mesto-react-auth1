@@ -8,3 +8,10 @@
     padding: 5px;
   }
 }  
+
+@media screen and (max-width: 600px) {
+  .profile__edit {
+    width: 7px;
+    height: 7px;
+  }
+} 

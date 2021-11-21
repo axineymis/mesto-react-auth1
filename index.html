@@ -18,12 +18,12 @@
           <img src="./images/image(1).jpg" class="profile__avatar" alt="Фото профиля">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button">
+            <button type="button" class="profile__edit-button">
               <img src="./images/Vector(1).svg" class="profile__edit" alt="Редактировать"></button>
             <p class="profile__text">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add">
+        <button type="button" class="profile__add">
           <img src="./images/Vector_plus.svg" class="profile__add-button" alt="Добавить">
         </button>
       </section>
@@ -77,15 +77,15 @@
       <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup popup_open">
+  <div class="popup">
     <form class="popup__content">
       <img src="./images/CloseIcon.svg" class="popup__close-icon" alt="Закрыть">
       <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__form">
-        <input type="text" placeholder="Имя" class="popup__name" value="">
+        <input type="text" name="name" placeholder="Имя" class="popup__name" value="">
       </fieldset>
       <fieldset class="popup__form">
-        <input type="text" placeholder="О себе" class="popup__text" value="">
+        <input type="text" name="comment" placeholder="О себе" class="popup__text" value="">
       </fieldset>
       <button type="submit"  class="popup__button">Сохранить</button>
     </form>

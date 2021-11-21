@@ -5,7 +5,7 @@
   font-size: 18px;
   line-height: 22px;
   margin-top: 0;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: #FFFFFF;
   /* outline: red solid 1px; */
 }
@@ -20,6 +20,7 @@
   .profile__text {
     display: flex;
     justify-content: center;
+    margin-bottom: 0;
   }
 }
 
