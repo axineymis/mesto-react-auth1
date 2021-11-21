@@ -11,6 +11,6 @@
 
 ### Обзор
 
-*[Ссылка на макет сайт](https://axineymis.github.io/Travel-in-Russia/)
+*[Ссылка на макет сайт](https://axineymis.github.io/mesto/)
 
 
