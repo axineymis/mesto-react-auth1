@@ -4,7 +4,7 @@
   font-weight: 400;
   font-size: 42px;
   line-height: 48px;
-  margin-top: 17px;
+  margin-top: 20px;
   margin-bottom: 5px;
   color: #ffffff;
   /* outline: red solid 1px; */
@@ -28,17 +28,8 @@
   }
 }
 
-@media screen and (max-width: 500px) {
-  .profile__name {
-    display: flex;
-    font-size: 27px;
-    line-height: 33px;
-  }
-}
-
 @media screen and (max-width: 400px) {
   .profile__name {
-    display: flex;
     justify-content: end;
     margin-top: 27px;
   }

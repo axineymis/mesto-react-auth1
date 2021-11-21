@@ -18,15 +18,3 @@
     margin-left: 80px;
   }
 }
-
-@media screen and (max-width: 500px) {
-  .profile__avatar {
-    display: flex;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .profile__avatar {
-    display: flex;
-  }
-}

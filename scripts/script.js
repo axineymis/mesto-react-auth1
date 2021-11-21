@@ -28,6 +28,3 @@ function formSubmitHandler (evt) {
     profileName.textContent = nameInput.value
     profileText.textContent = textInput.value
 }
-
-
-

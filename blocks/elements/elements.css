@@ -4,8 +4,8 @@
   margin-left: auto;
   margin-right: auto;
   column-gap: 17px;
-  row-gap: 19px;
-  margin-top: 43px;
+  row-gap: 22px;
+  margin-top: 50px;
   grid-template-columns: repeat(auto-fill, 282px);
   /* outline: 2px solid red; */
 }
