@@ -2,25 +2,12 @@
   width: 32px;
   height: 32px;
   position: relative;
-  margin-bottom: 2px;
   cursor: pointer;
 }
 
-.popup__close-icon:hover {
-  opacity: 0.6;
-}
-
-/* @media screen and (max-width: 600px) {
-  .popup__close-icon {
-    right: -400px;
-  }
-} */
-
 @media screen and (max-width: 500px) {
   .popup__close-icon {
-    /* right: -265px; */
     width: 20px;
     height: 20px;
-    /* top: -30px; */
   }
 }

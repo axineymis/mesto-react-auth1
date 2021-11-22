@@ -15,7 +15,13 @@
     max-width: calc(100% - 96px); 
   }
 }
- 
+
+@media screen and (max-width: 1000px) {
+  .elements {
+    max-width: 584px;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .elements {
     max-width: calc(100% - 38px);
