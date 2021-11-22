@@ -7,6 +7,9 @@
   margin-top: 0;
   margin-bottom: 20px;
   color: #FFFFFF;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   /* outline: red solid 1px; */
 }
 
