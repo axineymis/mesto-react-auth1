@@ -34,5 +34,6 @@
 @media screen and (max-width: 400px) {
   .profile__name {
     margin-top: 27px;
+    justify-self: end;
   }
 }

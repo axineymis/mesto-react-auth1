@@ -1,5 +1,5 @@
 .element__photo {
   box-sizing: border-box;
-  border-top-right-radius: 5%;
-  border-top-left-radius: 5%;
+  border-top-right-radius: 3%;
+  border-top-left-radius: 3%;
 }
