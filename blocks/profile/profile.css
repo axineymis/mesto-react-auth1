@@ -9,11 +9,6 @@
   /* outline: solid red 1px; */
 }  
 
-/* .profile:last-child {
-  margin-right: 0;
-  background-color: aqua;
- } */
-
 @media screen and (max-width: 1024px) {
   .profile {
     max-width: calc(100% - 96px); 
