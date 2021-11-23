@@ -29,9 +29,8 @@
 
 @media screen and (max-width: 400px) {
   .profile__text {
-    padding-right: 9px;
     font-size: 14px;
     line-height: 15px;
-    justify-self: end;
+    margin-left: 17px;
   }
 }
