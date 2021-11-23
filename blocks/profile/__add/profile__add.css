@@ -1,4 +1,5 @@
 .profile__add {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,16 +13,20 @@
   cursor: pointer;
 }
 
+.profile__add:last-child {
+  right: 0;
+ } 
+
 .profile__add:hover {
   opacity: 0.6;
 } 
-
 
 @media screen and (max-width: 700px) {
   .profile__add {
     width: 282px;
     height: 50px;
-    margin-top: 36px;  
+    margin-top: 36px; 
+    position: relative; 
   }
 }  
 

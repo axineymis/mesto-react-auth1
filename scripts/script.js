@@ -1,4 +1,5 @@
 const formContent = document.querySelector('.popup');
+let formElement = document.querySelector('.popup__content-form')
 let nameInput = formContent.querySelector('.popup__name');
 let textInput = formContent.querySelector('.popup__text');
 const saveButton = formContent.querySelector('.popup__button');
@@ -20,11 +21,11 @@ function closePopup() {
 
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
-formContent.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitHandler);
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
-    closePopup();
     profileName.textContent = nameInput.value
     profileText.textContent = textInput.value
+    closePopup();
 }

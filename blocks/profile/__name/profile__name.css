@@ -24,7 +24,7 @@
 
 @media screen and (max-width: 600px) {
   .profile__name {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     font-size: 27px;
     line-height: 33px;
@@ -33,7 +33,6 @@
 
 @media screen and (max-width: 400px) {
   .profile__name {
-    justify-content: end;
     margin-top: 27px;
   }
 }

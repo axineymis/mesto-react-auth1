@@ -27,16 +27,10 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
   .profile__text {
     padding-right: 25px;
     font-size: 13px;
     line-height: 15px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .profile__text {
-    justify-content: end;
   }
 }
