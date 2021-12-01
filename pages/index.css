@@ -7,6 +7,7 @@
 @import url(../blocks/element/__coption/element__coption.css);
 @import url(../blocks/element/__photo/element__photo.css);
 @import url(../blocks/element/__like-icon/element__like-icon.css);
+@import url(../blocks/element/__delete-btn/element__delete-btn.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/page/page.css);
