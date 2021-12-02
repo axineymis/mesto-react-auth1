@@ -12,11 +12,11 @@ const addButton = document.querySelector('.profile__add');
 const popupProfile = document.querySelector(".popup_type_edit");
 const popupAdd = document.querySelector(".popup_type_add");
 const popupClose =popupAdd.querySelector(".popup__close-button");
-const popupPic = formContent.querySelector('.popup__content-img');
-const popupPicClose = formContent.querySelector('.popup_type_img');
+const popupPic = document.querySelector('.popup_type_img');
+const popupPicClose = popupPic.querySelector('.popup__close-button');
 
-let titleImput = formContent.querySelector('.popup__input_type_title');
-let imgImput = formContent.querySelector('.popup__input_type_img');
+// let titleImput = formContent.querySelector('.popup__input_type_title');
+// let imgImput = formContent.querySelector('.popup__input_type_img');
 let elementTitle = document.querySelector('.element__title');
 let elementImg = document.querySelector('.element__photo');
 const saveImgBtn = document.querySelector('.popup_add-button');
@@ -119,8 +119,33 @@ function closePopupAdd() {
 
 addButton.addEventListener('click', openPopupAdd);
 popupClose.addEventListener('click', closePopupAdd);
+saveImgBtn.addEventListener('click', formSubmitPicture);
+
+function openPopupImg() {
+    popupPic.classList.add('popup_open')
+}
+
+function closePopupImg() {
+    popupPic.classList.remove('popup_open')
+}
+
+addButton.addEventListener('click', openPopupImg);
+popupClose.addEventListener('click', closePopupImg);
+saveImgBtn.addEventListener('click', formSubmitPicture);
 
 
+function formSubmitPicture(evt) {
+    evt.preventDefault();
+    const titleImput = popupAdd.querySelector('.popup__input_type_title');
+    const newCardTitle = titleImput.value
+    const imgImput = popupAdd.querySelector('.popup__input_type_img');
+    const newCardLink = imgImput.value
+    const newCard = getItem({ name: newCardTitle, link: newCardLink, alt:  newCardTitle });
+    cardElements.prepend(newCard);
+    closePopupAdd();
+    titleImput.value = '';
+    imgImput.value = '';
+  }
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
