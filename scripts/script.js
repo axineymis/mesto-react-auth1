@@ -3,7 +3,7 @@ let formElement = document.querySelector('.popup__content-form')
 let nameInput = formContent.querySelector('.popup__input_type_name');
 let textInput = formContent.querySelector('.popup__input_type_text');
 const saveButton = formContent.querySelector('.popup__button');
-const closeButton = formContent.querySelector('.popup__close-icon');
+const closeButton = formContent.querySelector('.popup__close-button');
 let profileName = document.querySelector('.profile__name');
 let profileText = document.querySelector('.profile__text');
 const editButton = document.querySelector('.profile__edit-button');
@@ -11,7 +11,9 @@ const addButton = document.querySelector('.profile__add');
  
 const popupProfile = document.querySelector(".popup_type_edit");
 const popupAdd = document.querySelector(".popup_type_add");
-const popupClose = document.querySelector(".popup_type_add");
+const popupClose =popupAdd.querySelector(".popup__close-button");
+const popupPic = formContent.querySelector('.popup__content-img');
+const popupPicClose = formContent.querySelector('.popup_type_img');
 
 let titleImput = formContent.querySelector('.popup__input_type_title');
 let imgImput = formContent.querySelector('.popup__input_type_img');
@@ -67,17 +69,31 @@ function getItem(item) {
     cardPhoto.src = item.link;
     cardPhoto.alt = item.name;
     deleteBtn.addEventListener('click', handDelete);
+    cardPhoto.addEventListener('click', handlePopupImg);
 
     return newItem;
 };
 
 render();
 
+
 function handDelete(evt) {
     const targetCard = evt.target;
     const listItem = targetCard.closest(".element");
     listItem.remove();
   }
+
+  function handlePopupImg(evt) {
+    const targetImg = evt.target;
+    const elementImg = targetImg.closest(".element");
+    const bigPicture = document.querySelector(".popup__big-img")
+    const bigPictureCaption = document.querySelector(".popup__caption");
+    bigPictureCaption.textContent = elementImg.textContent;
+    bigPicture.src = elementImg.querySelector(".element__photo").src;
+    bigPicture.alt = elementImg.textContent;
+    openPopupAdd();
+  }
+  
 
 function openPopupEdit() {
     nameInput.value = profileName.textContent;
@@ -103,6 +119,8 @@ function closePopupAdd() {
 
 addButton.addEventListener('click', openPopupAdd);
 popupClose.addEventListener('click', closePopupAdd);
+
+
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
