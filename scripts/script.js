@@ -91,7 +91,7 @@ function handDelete(evt) {
     bigPictureCaption.textContent = elementImg.textContent;
     bigPicture.src = elementImg.querySelector(".element__photo").src;
     bigPicture.alt = elementImg.textContent;
-    openPopupAdd();
+    openPopup();
   }
   
 
