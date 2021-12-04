@@ -103,15 +103,15 @@ function handDelete(evt) {
   
   function formSubmitPicture(evt) {
     evt.preventDefault();
-    const titleImput = popupAdd.querySelector('.popup__input_type_title');
-    const newCardTitle = titleImput.value
-    const imgImput = popupAdd.querySelector('.popup__input_type_img');
-    const newCardLink = imgImput.value
+    const titleInput = popupAdd.querySelector('.popup__input_type_title');
+    const newCardTitle = titleInput.value
+    const imgInput = popupAdd.querySelector('.popup__input_type_img');
+    const newCardLink = imgInput.value
     const newCard = getItem({ name: newCardTitle, link: newCardLink, alt:  newCardTitle });
     cardElements.prepend(newCard);
     closePopupAdd();
-    titleImput.value = '';
-    imgImput.value = '';
+    titleInput.value = '';
+    imgInput.value = '';
   }
 
 function formSubmitHandler (evt) {
