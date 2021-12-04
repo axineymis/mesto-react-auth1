@@ -18,7 +18,7 @@ const elemPic = document.querySelector('element');
 
 const elementTitle = document.querySelector('.element__title');
 const elementPic = document.querySelector('.element__photo');
-const saveImgBtn = document.querySelector('.popup_add-button');
+const saveImgBtn = document.querySelector('.popup__button_add-button');
 const cardElements = document.querySelector(".elements");
 const templateEl = document.querySelector(".template__card");
 const initialCards = [
