@@ -1,7 +1,7 @@
 .page {
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -9,5 +9,4 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   background-color: #000000;
-  min-width: 320px;   
 }

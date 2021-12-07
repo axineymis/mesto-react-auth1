@@ -101,7 +101,7 @@ function handDelete(evt) {
     openPopupImg();
   }
   
-  function formSubmitPicture(evt) {
+  function submitPictureForm(evt) {
     evt.preventDefault();
     const titleInput = popupAdd.querySelector('.popup__input_type_title');
     const newCardTitle = titleInput.value
@@ -114,7 +114,7 @@ function handDelete(evt) {
     imgInput.value = '';
   }
 
-function formSubmitHandler (evt) {
+function submitHandlerForm (evt) {
     evt.preventDefault(); 
     profileName.textContent = nameInput.value
     profileText.textContent = textInput.value
@@ -133,7 +133,7 @@ function closePopupEdit() {
 
 editButton.addEventListener('click', openPopupEdit);
 closeButton.addEventListener('click', closePopupEdit);
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', submitHandlerForm);
 
 function openPopupAdd() {
     popupAdd.classList.add("popup_open")
@@ -145,7 +145,7 @@ function closePopupAdd() {
 
 addButton.addEventListener('click', openPopupAdd);
 popupClose.addEventListener('click', closePopupAdd);
-saveImgBtn.addEventListener('click', formSubmitPicture);
+saveImgBtn.addEventListener('click', submitPictureForm);
 
 function openPopupImg() {
     popupPic.classList.add('popup_open')
