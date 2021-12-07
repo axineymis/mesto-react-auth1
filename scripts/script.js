@@ -57,7 +57,6 @@ const initialCards = [
       cardElements.append(...html);
   }
   
-
 function getItem(item) {
     const newItem = templateEl.content.cloneNode(true);
     const cardTitle = newItem.querySelector('.element__title');
