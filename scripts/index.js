@@ -16,6 +16,10 @@ const popupPic = document.querySelector('.popup_type_img');
 const popupPicCloseButton = popupPic.querySelector('.popup__close-button');
 const formImg = popupAdd.querySelector('.popup__content-form');
 
+const popupOverlayEdit = document.querySelector('.popup__overlay');
+const popupOverlayAdd = popupAdd.querySelector('.popup__overlay');
+const popupOverlayPic = popupPic.querySelector('.popup__overlay');
+
 const elementTitle = document.querySelector('.element__title');
 const elementPic = document.querySelector('.element__photo');
 const saveImgBtn = document.querySelector('.popup__button_add-button');
@@ -120,13 +124,13 @@ function handleProfileFormSubmit (evt) {
 }
 
 function openPopup(popup) {
-    // nameInput.value = profileName.textContent;
-    // textInput.value = profileText.textContent;
-    popup.classList.add("popup_open")
+    popup.classList.add("popup_open");
+    document.addEventListener("keyup", handleKeyEsc);
 }
 
 function closePopup(popup) {
     popup.classList.remove('popup_open');
+    document.removeEventListener("keyup", handleKeyEsc);
 }
 
 function showProfilePopup() {
@@ -135,18 +139,40 @@ function showProfilePopup() {
   openPopup(popupProfile);
 }
 
+function showPopupAdd() {
+  saveImgBtn.classList.add('popup__button_disabled');
+  saveImgBtn.setAttribute('disabled','disabled');
+  openPopup(popupAdd);
+}
+
+
 editButton.addEventListener('click', showProfilePopup);
 profileCloseButton.addEventListener('click', () => closePopup(popupProfile));
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
-addButton.addEventListener('click', () => openPopup(popupAdd));
+addButton.addEventListener('click', () => showPopupAdd(popupAdd));
 addCardCloseButton.addEventListener('click', () => closePopup(popupAdd));
 formImg.addEventListener('submit', submitPictureForm);
 
 popupPicCloseButton.addEventListener('click', () => closePopup(popupPic));
 
+function handleKeyEsc(event) {
+  if (event.key === "Escape" || event.key === "Esc") {
+    const activePopup = document.querySelector(".popup_open");
+    closePopup(activePopup);
+   }
+}
 
+popupOverlayEdit.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
 
+popupOverlayAdd.addEventListener('click', () => {
+  closePopup(popupAdd);
+});
 
+popupOverlayPic.addEventListener('click', () => {
+  closePopup(popupPic);
+});
 
 

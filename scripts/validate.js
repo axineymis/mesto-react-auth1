@@ -1,5 +1,3 @@
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
 
 const showError = (form, input, errorMessageText, errorMessageClass, inputErrorClass) => {
     const errorMessage = form.querySelector(`#${input.id}-error`);
@@ -21,15 +19,12 @@ const hasInvalidInput = (inputs) => {
   }
 
   const toggleButtonError = (inputs, button, inactiveButtonClass) => {
-    //   console.log(inputs);
-      console.log(hasInvalidInput(inputs))
+      // console.log(hasInvalidInput(inputs))
     if (hasInvalidInput(inputs)) {
-        console.log(inactiveButtonClass)
+        // console.log(inactiveButtonClass)
       button.classList.add(inactiveButtonClass);
-   
       button.disabled = true;
     } else {
-       
       button.classList.remove(inactiveButtonClass)
       button.disabled = false;
     }
@@ -42,7 +37,6 @@ const checkIfInputValid = (form, input, {inputErrorClass, errorClass}) => {
         hideError(form, input, errorClass, inputErrorClass);
     }
 }
-
 
 const setInputListners = (form, {inputSelector, submitButtonSelector, inactiveButtonClass, ...rest}) => {
     const inputs = form.querySelectorAll(inputSelector);
@@ -57,9 +51,9 @@ const setInputListners = (form, {inputSelector, submitButtonSelector, inactiveBu
 
 const enableValidation = ({formSelector, ...rest}) => {
     const forms = document.querySelectorAll(formSelector);
-    console.log(forms);
+    // console.log(forms);
     forms.forEach((form) => {
-        console.log(form)
+        // console.log(form)
       form.addEventListener('submit', (event) => {
         event.preventDefault();
       });
