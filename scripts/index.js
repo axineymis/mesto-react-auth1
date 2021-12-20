@@ -15,6 +15,11 @@ const addCardCloseButton =popupAdd.querySelector(".popup__close-button");
 const popupPic = document.querySelector('.popup_type_img');
 const popupPicCloseButton = popupPic.querySelector('.popup__close-button');
 const formImg = popupAdd.querySelector('.popup__content-form');
+const bigPicture = document.querySelector(".popup__big-img")
+const bigPictureCaption = document.querySelector(".popup__caption");
+const titleInput = popupAdd.querySelector('.popup__input_type_title');
+const imgInput = popupAdd.querySelector('.popup__input_type_img');
+
 
 const popupOverlayEdit = document.querySelector('.popup__overlay');
 const popupOverlayAdd = popupAdd.querySelector('.popup__overlay');
@@ -81,8 +86,8 @@ function getItem(item) {
 
 render();
 
-function like(LikeBtn) {
-    LikeBtn.classList.toggle('element__like-button_active');
+function like(likeBtn) {
+    likeBtn.classList.toggle('element__like-button_active');
 } 
 
 function handDelete(evt) {
@@ -95,8 +100,6 @@ function handDelete(evt) {
   function handlePopupImg(evt) {
     const targetImg = evt.target;
     const elementImg = targetImg.closest(".element");
-    const bigPicture = document.querySelector(".popup__big-img")
-    const bigPictureCaption = document.querySelector(".popup__caption");
     bigPictureCaption.textContent = elementImg.textContent;
     bigPicture.src = elementImg.querySelector(".element__photo").src;
     bigPicture.alt = elementImg.textContent;
@@ -105,9 +108,7 @@ function handDelete(evt) {
   
   function submitPictureForm(evt) {
     evt.preventDefault();
-    const titleInput = popupAdd.querySelector('.popup__input_type_title');
     const newCardTitle = titleInput.value
-    const imgInput = popupAdd.querySelector('.popup__input_type_img');
     const newCardLink = imgInput.value
     const newCard = getItem({ name: newCardTitle, link: newCardLink, alt:  newCardTitle });
     cardElements.prepend(newCard);
