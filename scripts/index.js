@@ -1,3 +1,5 @@
+import Card from './Cards.js';
+import FormValidator from './FormValidator.js';
 const popupProfile = document.querySelector(".popup_type_edit");
 const profileForm = document.querySelector('.popup__content-form')
 const nameInput = popupProfile.querySelector('.popup__input_type_name');
