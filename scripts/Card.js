@@ -3,7 +3,7 @@ const bigImg = document.querySelector('.popup__big-img');
 const bigPictureCapt = document.querySelector('.popup__caption');
 const popupTypeImg = document.querySelector('.popup_type_img');
 
-export default class Card {
+class Card {
     constructor(data, selector, openPopupHandler) {
         this._name = data.name;
         this._link = data.link;
@@ -30,7 +30,7 @@ export default class Card {
         this._setEventListeners();
         return this._element;
     }
-    _handlePopupPictureClick = () => {
+    _handlePopupImg = () => {
         bigImg.src = this._link;
         bigImg.alt = this._name;
         bigPictureCapt.textContent = this._name;
@@ -38,7 +38,7 @@ export default class Card {
       }
       _setEventListeners() {
         const elemPic = this._element.querySelector(".element__photo");
-        elemPic.addEventListener('click', this._handlePopupPictureClick);
+        elemPic.addEventListener('click', this._handlePopupImg);
     
         const elemDeleteBtn = this._element.querySelector(".element__delete-btn");
         elemDeleteBtn.addEventListener('click', this._handleDelete);
@@ -56,4 +56,4 @@ export default class Card {
       }
    
 }
-// export default Card;
+export default Card;
