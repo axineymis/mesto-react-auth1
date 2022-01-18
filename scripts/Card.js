@@ -15,11 +15,12 @@ export default class Card {
         const cardElement = document
         .querySelector(this._selector)
         .content
-        .querySelector('.template__card')
+        .querySelector('.element')
         .cloneNode(true);
-
+        
         return cardElement;
     }
+
     generateCard() {
         this._element = this._getTemplate();
         const elemPhoto = this._element.querySelector('.element__photo');
