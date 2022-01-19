@@ -11,7 +11,6 @@ const profileText = document.querySelector('.profile__text');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add');
  
-
 const popupAdd = document.querySelector(".popup_type_add");
 const addCardCloseButton =popupAdd.querySelector(".popup__close-button");
 const popupPic = document.querySelector('.popup_type_img');
@@ -21,42 +20,14 @@ const formImg = popupAdd.querySelector('.popup__content-form');
 const titleInput = popupAdd.querySelector('.popup__input_type_title');
 const imgInput = popupAdd.querySelector('.popup__input_type_img');
 
-
 const popupOverlayEdit = popupProfile.querySelector('.popup__overlay');
 const popupOverlayAdd = popupAdd.querySelector('.popup__overlay');
 const popupOverlayPic = popupPic.querySelector('.popup__overlay');
 
-const elementTitle = document.querySelector('.element__title');
-const elementPic = document.querySelector('.element__photo');
 const saveImgBtn = document.querySelector('.popup__button_add-button');
 const cardElements = document.querySelector(".elements");
 
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+import {initialCards} from './data.js';
 
   function createCard(data) {
     const card = new Card(data, '#templateCard', openPopup);
@@ -158,3 +129,5 @@ const contentFormValidation =
 const profileFormValidation =
   new FormValidator(config, profileForm);
   profileFormValidation.enableValidation();
+  
+  
