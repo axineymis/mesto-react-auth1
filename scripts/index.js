@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import {initialCards} from './data.js';
 const popupProfile = document.querySelector(".popup_type_edit");
 const profileForm = document.querySelector('.popup__content-form')
 const nameInput = popupProfile.querySelector('.popup__input_type_name');
@@ -27,8 +28,6 @@ const popupOverlayPic = popupPic.querySelector('.popup__overlay');
 const saveImgBtn = document.querySelector('.popup__button_add-button');
 const cardElements = document.querySelector(".elements");
 
-import {initialCards} from './data.js';
-
   function createCard(data) {
     const card = new Card(data, '#templateCard', openPopup);
     const cardElement = card.generateCard();
@@ -53,7 +52,7 @@ function submitPictureForm(evt) {
     name: titleInput.value,
     link: imgInput.value,
   };
-  const newCard = new createCard(inputs);
+  const newCard = createCard(inputs);
   cardElements.prepend(newCard);
   closePopup(popupAdd);
 }
