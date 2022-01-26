@@ -1,7 +1,7 @@
 
-const bigImg = document.querySelector('.popup__big-img');
-const bigPictureCapt = document.querySelector('.popup__caption');
-const popupTypeImg = document.querySelector('.popup_type_img');
+// const bigImg = document.querySelector('.popup__big-img');
+// const bigPictureCapt = document.querySelector('.popup__caption');
+// const popupTypeImg = document.querySelector('.popup_type_img');
 
 class Card {
     constructor(data, selector, openPopupHandler) {
@@ -23,36 +23,39 @@ class Card {
 
     generateCard() {
         this._element = this._getTemplate();
-        const elemPhoto = this._element.querySelector('.element__photo');
-        elemPhoto.src = this._link;
-        elemPhoto.alt = this._name;
+        this._elemPhoto = this._element.querySelector('.element__photo');
+        this._elemPhoto.src = this._link;
+        this._elemPhoto.alt = this._name;
         this._element.querySelector('.element__title').textContent = this._name;
         this._setEventListeners();
         return this._element;
     }
+
     _handlePopupImg = () => {
         bigImg.src = this._link;
         bigImg.alt = this._name;
         bigPictureCapt.textContent = this._name;
         this._openPopupHandler(popupTypeImg);
       }
+
       _setEventListeners() {
-        const elemPic = this._element.querySelector(".element__photo");
-        elemPic.addEventListener('click', this._handlePopupImg);
+        this._elemPhoto.addEventListener('click', () => {
+          this._openPopupHandler(this._name, this._link);
+        });
     
-        const elemDeleteBtn = this._element.querySelector(".element__delete-btn");
-        elemDeleteBtn.addEventListener('click', this._handleDelete);
+        this._elemDeleteBtn = this._element.querySelector(".element__delete-btn");
+        this._elemDeleteBtn.addEventListener('click', this._handleDelete);
     
-        const elemLikeBtn = this._element.querySelector(".element__like-button");
-        elemLikeBtn.addEventListener('click', this._handleLike);
+        this._elemLikeBtn = this._element.querySelector(".element__like-button");
+        this._elemLikeBtn.addEventListener('click', this._handleLike);
       }
+
       _handleDelete = () => {
         this._element.remove();
       }
 
       _handleLike = () => {
-        const elemLikeBtn = this._element.querySelector(".element__like-button");
-        elemLikeBtn.classList.toggle("element__like-button_active");
+        this._elemLikeBtn.classList.toggle("element__like-button_active");
       }
    
 }
