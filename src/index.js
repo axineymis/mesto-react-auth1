@@ -1,10 +1,11 @@
-import Card from '../components/Card.js';
-import FormValidator from '../components/FormValidator.js';
-import {initialCards} from '../components/data.js';
-import Section from "../components/Section.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import UserInfo from "../components/UserInfo.js"; 
+
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
+import {initialCards} from './components/data.js';
+import Section from "./components/Section.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import UserInfo from "./components/UserInfo.js"; 
 
 const popupProfile = document.querySelector(".popup_type_edit");
 const profileForm = document.querySelector('.popup__content-form')
@@ -201,4 +202,9 @@ addButton.addEventListener('click', showPopupAdd);
 //   new FormValidator(config, profileForm);
 //   profileFormValidation.enableValidation();
   
-  
+const numbers = [2, 3, 5];
+
+// Стрелочная функция. Не запнётся ли на ней Internet Explorer?
+const doubledNumbers = numbers.map(number => number * 2);
+
+console.log(doubledNumbers); // 4, 6, 10 
