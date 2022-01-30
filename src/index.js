@@ -37,7 +37,7 @@ const config = {
 
 function showPopupAdd() {
   popupPlaceClass.open();
-  contentFormValidation.enableValidation();
+  // contentFormValidation.enableValidation();
 }
 
 function showProfilePopup() {
@@ -52,9 +52,7 @@ function showProfilePopup() {
 
 buttonEdit.addEventListener('click', showProfilePopup);
 buttonAdd.addEventListener('click', showPopupAdd);
-popupProfileClass.setEventListeners();
-popupPlaceClass.setEventListeners();
-popupWithImage.setEventListeners();
+
 
 function createCard(data) {
   const card = new Card(data, '#templateCard', handleCardClick);
@@ -104,4 +102,9 @@ function submitPictureForm(evt) {
   cardElements);
   cards.renderItems();
 
- 
+  contentFormValidation.enableValidation();
+  profileFormValidation.enableValidation();
+
+  popupProfileClass.setEventListeners();
+  popupPlaceClass.setEventListeners();
+  popupWithImage.setEventListeners();
