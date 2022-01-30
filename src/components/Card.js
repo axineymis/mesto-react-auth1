@@ -1,8 +1,4 @@
 
-// const bigImg = document.querySelector('.popup__big-img');
-// const bigPictureCapt = document.querySelector('.popup__caption');
-// const popupTypeImg = document.querySelector('.popup_type_img');
-
 class Card {
     constructor(data, selector, openPopupHandler) {
         this._name = data.name;
