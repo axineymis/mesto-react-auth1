@@ -35,10 +35,6 @@ const config = {
   errorClass: 'error_visible'
 };
 
-const popupPlaceClass = new PopupWithForm('.popup_type_add', submitPictureForm);
-const popupProfileClass = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit)
-const userInfo = new UserInfo({ nameSelector: profileName, userInfoSelector: profileText})
-
 function showPopupAdd() {
   popupPlaceClass.open();
   contentFormValidation.enableValidation();
@@ -53,6 +49,30 @@ function showProfilePopup() {
   popupProfileClass.open();
   profileFormValidation.enableValidation();
 }
+
+buttonEdit.addEventListener('click', showProfilePopup);
+buttonAdd.addEventListener('click', showPopupAdd);
+popupProfileClass.setEventListeners();
+popupPlaceClass.setEventListeners();
+popupWithImage.setEventListeners();
+
+function createCard(data) {
+  const card = new Card(data, '#templateCard', handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+function handleCardClick(name, link) {
+  // const popupWithImage = new PopupWithImage('.popup_type_img');
+  popupWithImage.open({ name, link });
+}
+
+const popupPlaceClass = new PopupWithForm('.popup_type_add', submitPictureForm);
+const popupProfileClass = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit);
+const userInfo = new UserInfo({ nameSelector: profileName, userInfoSelector: profileText})
+const contentFormValidation = new FormValidator(config, formImg);
+const profileFormValidation = new FormValidator(config, profileForm);
+const popupWithImage = new PopupWithImage('.popup_type_img');
 
 function handleProfileFormSubmit (evt) {
   userInfo.setUserInfo({
@@ -74,27 +94,6 @@ function submitPictureForm(evt) {
   popupPlaceClass.close();
 }
 
-buttonEdit.addEventListener('click', showProfilePopup);
-buttonAdd.addEventListener('click', showPopupAdd);
-
-  function createCard(data) {
-    const card = new Card(data, '#templateCard', handleCardClick);
-    const cardElement = card.generateCard();
-    return cardElement;
-  }
-
-  function handleCardClick(name, link) {
-    const popupWithImage = new PopupWithImage('.popup_type_img');
-    popupWithImage.open({ name, link });
-  }
-
-
-  const contentFormValidation =
-  new FormValidator(config, formImg);
-  
-  const profileFormValidation =
-  new FormValidator(config, profileForm);
- 
   const cards = new Section({
     items: initialCards,
     renderer: (item) => {
@@ -105,3 +104,4 @@ buttonAdd.addEventListener('click', showPopupAdd);
   cardElements);
   cards.renderItems();
 
+ 
