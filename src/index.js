@@ -15,11 +15,10 @@ const textInput = popupProfile.querySelector('.popup__input_type_text');
 
 const profileName = document.querySelector('.profile__name');
 const profileText = document.querySelector('.profile__text');
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add');
+const buttonEdit = document.querySelector('.profile__edit-button');
+const buttonAdd = document.querySelector('.profile__add');
  
 const popupAdd = document.querySelector(".popup_type_add");
-const popupPic = document.querySelector('.popup_type_img');
 const formImg = popupAdd.querySelector('.popup__content-form');
 
 const titleInput = popupAdd.querySelector('.popup__input_type_title');
@@ -50,14 +49,16 @@ function showProfilePopup() {
   nameInput.value = userInfo.getUserInfo().name;
   textInput.value = userInfo.getUserInfo().text;
   }
+
   popupProfileClass.open();
   profileFormValidation.enableValidation();
 }
 
 function handleProfileFormSubmit (evt) {
-  // evt.preventDefault(); 
-  profileName.textContent = nameInput.value
-  profileText.textContent = textInput.value
+  userInfo.setUserInfo({
+  name: nameInput.value,
+  text: textInput.value
+  });
   popupProfileClass.close();
 }
 
@@ -73,8 +74,8 @@ function submitPictureForm(evt) {
   popupPlaceClass.close();
 }
 
-editButton.addEventListener('click', showProfilePopup);
-addButton.addEventListener('click', showPopupAdd);
+buttonEdit.addEventListener('click', showProfilePopup);
+buttonAdd.addEventListener('click', showPopupAdd);
 
   function createCard(data) {
     const card = new Card(data, '#templateCard', handleCardClick);

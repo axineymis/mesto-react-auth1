@@ -7,7 +7,8 @@ export default class FormValidator {
         this._inactiveButtonClass = config.inactiveButtonClass;
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
-        this._inputs = this._form.querySelectorAll(this._inputSelector);
+        this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
+        // this._inputs = this._form.querySelectorAll(this._inputSelector);
         this._submitButton = this._form.querySelector(this._submitButtonSelector);
     }
 
@@ -25,15 +26,19 @@ export default class FormValidator {
         input.classList.remove(this._inputErrorClass);
       }
 
+      // _hasInvalidInput() {
+      //   return Array.from(this._inputs).some((el) => !el.validity.valid);
+      // }
+
       _hasInvalidInput() {
-        return Array.from(this._inputs).some((el) => !el.validity.valid);
+        return this._inputs.some((el) => !el.validity.valid);
       }
 
       _checkIfInputValid(input) {
         if (!input.validity.valid) {
-          this._showInputError(input, input.validationMessage, this._errorClass, this._inputErrorClass);
+          this._showInputError(input, input.validationMessage);
         } else {
-          this._hideInputError(input, this._errorClass, this._inputErrorClass);
+          this._hideInputError(input);
         }
       }
 

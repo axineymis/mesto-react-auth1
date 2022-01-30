@@ -27,12 +27,12 @@ class Card {
         return this._element;
     }
 
-    _handlePopupImg = () => {
-        bigImg.src = this._link;
-        bigImg.alt = this._name;
-        bigPictureCapt.textContent = this._name;
-        this._openPopupHandler(popupTypeImg);
-      }
+    // _handlePopupImg = () => {
+    //     bigImg.src = this._link;
+    //     bigImg.alt = this._name;
+    //     bigPictureCapt.textContent = this._name;
+    //     this._openPopupHandler(popupTypeImg);
+    //   }
 
       _setEventListeners() {
         this._elemPhoto.addEventListener('click', () => {
