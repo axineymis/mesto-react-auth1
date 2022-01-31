@@ -37,7 +37,11 @@ const config = {
 
 function showPopupAdd() {
   popupPlaceClass.open();
-  contentFormValidation. _toggleButtonError();
+
+  contentFormValidation.removeInputError();
+  contentFormValidation._toggleButtonError();
+  
+  
 }
 
 function showProfilePopup() {
@@ -47,6 +51,8 @@ function showProfilePopup() {
   }
   
     popupProfileClass.open();
+
+
 }
 
 buttonEdit.addEventListener('click', showProfilePopup);

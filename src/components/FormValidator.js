@@ -26,6 +26,12 @@ export default class FormValidator {
         input.classList.remove(this._inputErrorClass);
       }
 
+      removeInputError() { 
+        this._inputs.forEach((input) => {
+          this._hideInputError(input);
+        });
+      }
+
       // _hasInvalidInput() {
       //   return Array.from(this._inputs).some((el) => !el.validity.valid);
       // }
@@ -66,6 +72,7 @@ export default class FormValidator {
       enableValidation() {
         this._form.addEventListener('submit', (evt) =>
           evt.preventDefault());
+          
         this._setInputListeners();
       }
 }
