@@ -37,7 +37,7 @@ const config = {
 
 function showPopupAdd() {
   popupPlaceClass.open();
-  contentFormValidation.enableValidation();
+  contentFormValidation. _toggleButtonError();
 }
 
 function showProfilePopup() {
@@ -45,16 +45,13 @@ function showProfilePopup() {
   nameInput.value = userInfo.getUserInfo().name;
   textInput.value = userInfo.getUserInfo().text;
   }
-
-  popupProfileClass.open();
-  profileFormValidation.enableValidation();
+  
+    popupProfileClass.open();
 }
 
 buttonEdit.addEventListener('click', showProfilePopup);
 buttonAdd.addEventListener('click', showPopupAdd);
-popupProfileClass.setEventListeners();
-popupPlaceClass.setEventListeners();
-popupWithImage.setEventListeners();
+
 
 function createCard(data) {
   const card = new Card(data, '#templateCard', handleCardClick);
@@ -73,6 +70,24 @@ const userInfo = new UserInfo({ nameSelector: profileName, userInfoSelector: pro
 const contentFormValidation = new FormValidator(config, formImg);
 const profileFormValidation = new FormValidator(config, profileForm);
 const popupWithImage = new PopupWithImage('.popup_type_img');
+
+// const popupProfileClass = new PopupWithForm({
+//   popupSelector: '.popup_type_edit',
+//   handleFormSubmit: ({ name, text }) => {
+//     userData.setUserInfo({ name, text });
+//     popupProfileClass.close();
+//   }
+// });
+
+// const popupPlaceClass = new PopupWithForm({
+//   popupSelector: '.popup_type_add',
+//   handleFormSubmit: ({ placeName, placeLink }) => {
+//     const newCard = createCard({ name: placeName, link: placeLink });
+//     cards.prependItem(newCard);
+//     popupPlaceClass.close();
+//   }
+// });
+
 
 function handleProfileFormSubmit (evt) {
   userInfo.setUserInfo({
@@ -104,4 +119,9 @@ function submitPictureForm(evt) {
   cardElements);
   cards.renderItems();
 
- 
+  contentFormValidation.enableValidation();
+  profileFormValidation.enableValidation();
+
+  popupProfileClass.setEventListeners();
+  popupPlaceClass.setEventListeners();
+  popupWithImage.setEventListeners();
