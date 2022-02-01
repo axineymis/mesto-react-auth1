@@ -1,12 +1,12 @@
-import "./pages/index.css";
+import "./index.css";
 
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
-import {initialCards} from './components/data.js';
-import Section from "./components/Section.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js"; 
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import {initialCards} from '../components/data.js';
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js"; 
 
 const popupProfile = document.querySelector(".popup_type_edit");
 const profileForm = document.querySelector('.popup__content-form')
@@ -76,7 +76,7 @@ function showProfilePopup() {
   nameInput.value = userEdit.name;
   textInput.value = userEdit.comment;
 
-  contentFormValidation.removeInputError();
+  profileFormValidation.removeInputError();
   popupProfileClass.open(); 
 }
 
