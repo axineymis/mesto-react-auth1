@@ -1,10 +1,10 @@
 
 class Card {
-    constructor(data, selector, openPopupHandler) {
+    constructor(data, selector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._selector = selector;
-        this._openPopupHandler = openPopupHandler;
+        this._handleCardClick = handleCardClick;
     } 
 
     _getTemplate() {
@@ -36,7 +36,7 @@ class Card {
 
       _setEventListeners() {
         this._elemPhoto.addEventListener('click', () => {
-          this._openPopupHandler(this._name, this._link);
+          this._handleCardClick(this._name, this._link);
         });
     
         this._elemDeleteBtn = this._element.querySelector(".element__delete-btn");

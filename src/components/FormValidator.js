@@ -58,8 +58,6 @@ export default class FormValidator {
         }
       }
 
-      
-
       _setInputListeners() {
         this._inputs.forEach((input) => {
           input.addEventListener('input', () => {

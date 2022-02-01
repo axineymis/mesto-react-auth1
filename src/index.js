@@ -45,14 +45,15 @@ function showPopupAdd() {
 }
 
 function showProfilePopup() {
-  if (nameInput.value === "" && textInput.value === "") {
-  nameInput.value = userInfo.getUserInfo().name;
-  textInput.value = userInfo.getUserInfo().text;
-  }
-  
+  // if (nameInput.value === "" && textInput.value === "") {
+  // nameInput.value = userInfo.getUserInfo().name;
+  // textInput.value = userInfo.getUserInfo().text;
+  const userEdit = userInfo.getUserInfo();
+  nameInput.value = userEdit.name;
+  textInput.value = userEdit.comment;
+  // }
+ 
     popupProfileClass.open();
-
-
 }
 
 buttonEdit.addEventListener('click', showProfilePopup);
@@ -70,20 +71,78 @@ function handleCardClick(name, link) {
   popupWithImage.open({ name, link });
 }
 
-const popupPlaceClass = new PopupWithForm('.popup_type_add', submitPictureForm);
-const popupProfileClass = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit);
-const userInfo = new UserInfo({ nameSelector: profileName, userInfoSelector: profileText})
+//const popupPlaceClass = new PopupWithForm('.popup_type_add', submitPictureForm);
+//const popupProfileClass = new PopupWithForm('.popup_type_edit', handleProfileFormSubmit);
+const userInfo = new UserInfo({ nameSelector: '.profile__name', userInfoSelector: '.profile__text'})
 const contentFormValidation = new FormValidator(config, formImg);
 const profileFormValidation = new FormValidator(config, profileForm);
 const popupWithImage = new PopupWithImage('.popup_type_img');
 
-// const popupProfileClass = new PopupWithForm({
-//   popupSelector: '.popup_type_edit',
-//   handleFormSubmit: ({ name, text }) => {
-//     userData.setUserInfo({ name, text });
-//     popupProfileClass.close();
-//   }
-// });
+const popupProfileClass = new PopupWithForm({
+  popupSelector: '.popup_type_edit',
+  
+  handleFormSubmit: ({ name, comment }) => {
+    userInfo.setUserInfo({ name, comment });
+    popupProfileClass.close();
+  }
+});
+
+const popupPlaceClass = new PopupWithForm({
+  popupSelector: '.popup_type_add',
+  handleFormSubmit: ({ title, img }) => {
+    console.log(title)
+    console.log(img)
+    const newCard = createCard({ name:title, link: img });
+    cards.prependItem(newCard);
+    popupPlaceClass.close();
+    
+  }
+});
+
+const cards = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = createCard(item);
+    cards.addItem(card);
+  },
+},
+".elements");
+cards.renderItems();
+
+
+
+
+
+// function handleProfileFormSubmit () {
+//   userInfo.setUserInfo({
+//   name: nameInput.value,
+//   text: textInput.value
+//   });
+//   popupProfileClass.close();
+// }
+
+//function submitPictureForm() { 
+
+  // const inputs ={ 
+  //   name: titleInput.value, 
+  //   link: imgInput.value, 
+  // }; 
+
+
+//   const newCard = createCard(inputs);
+//   cardElements.prepend(newCard); 
+
+//   popupPlaceClass.close(); 
+// } 
+
+
+
+
+// function submitPictureForm({ placeName, placeLink }) {
+//   const newCard = createCard({ name: placeName, link: placeLink });
+//   cards.prependItem(newCard);
+//   popupPlaceClass.close();
+// }
 
 // const popupPlaceClass = new PopupWithForm({
 //   popupSelector: '.popup_type_add',
@@ -94,36 +153,9 @@ const popupWithImage = new PopupWithImage('.popup_type_img');
 //   }
 // });
 
-
-function handleProfileFormSubmit (evt) {
-  userInfo.setUserInfo({
-  name: nameInput.value,
-  text: textInput.value
-  });
-  popupProfileClass.close();
-}
-
-function submitPictureForm(evt) {
-  // evt.preventDefault();
-  const inputs ={
-    name: titleInput.value,
-    link: imgInput.value,
-  };
-  const newCard = createCard(inputs);
-  cardElements.prepend(newCard);
  
-  popupPlaceClass.close();
-}
 
-  const cards = new Section({
-    items: initialCards,
-    renderer: (item) => {
-      const card = createCard(item);
-      cards.addItem(card);
-    },
-  },
-  cardElements);
-  cards.renderItems();
+
 
   contentFormValidation.enableValidation();
   profileFormValidation.enableValidation();
