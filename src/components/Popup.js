@@ -3,11 +3,10 @@ export default class Popup {
         this._popup = document.querySelector(popupSelector);
         this._handleEscClose = this._handleEscClose.bind(this);
     }
+    
     open() {
         this._popup.classList.add('popup_open');
         document.addEventListener('keyup', this._handleEscClose);
-        // this.setEventListeners();
-        
     }
 
     close() {

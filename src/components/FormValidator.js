@@ -8,7 +8,6 @@ export default class FormValidator {
         this._inputErrorClass = config.inputErrorClass;
         this._errorClass = config.errorClass;
         this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
-        // this._inputs = this._form.querySelectorAll(this._inputSelector);
         this._submitButton = this._form.querySelector(this._submitButtonSelector);
     }
 
@@ -31,10 +30,6 @@ export default class FormValidator {
           this._hideInputError(input);
         });
       }
-
-      // _hasInvalidInput() {
-      //   return Array.from(this._inputs).some((el) => !el.validity.valid);
-      // }
 
       _hasInvalidInput() {
         return this._inputs.some((el) => !el.validity.valid);
@@ -70,7 +65,6 @@ export default class FormValidator {
       enableValidation() {
         this._form.addEventListener('submit', (evt) =>
           evt.preventDefault());
-          
         this._setInputListeners();
       }
 }

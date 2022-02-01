@@ -14,7 +14,6 @@ export default class UserInfo {
     setUserInfo({name, comment}){
       this._name.textContent = name;
       this._comment.textContent = comment;
-      
     }
   }
 

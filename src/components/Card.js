@@ -27,21 +27,12 @@ class Card {
         return this._element;
     }
 
-    // _handlePopupImg = () => {
-    //     bigImg.src = this._link;
-    //     bigImg.alt = this._name;
-    //     bigPictureCapt.textContent = this._name;
-    //     this._openPopupHandler(popupTypeImg);
-    //   }
-
       _setEventListeners() {
         this._elemPhoto.addEventListener('click', () => {
           this._handleCardClick(this._name, this._link);
         });
-    
         this._elemDeleteBtn = this._element.querySelector(".element__delete-btn");
         this._elemDeleteBtn.addEventListener('click', this._handleDelete);
-    
         this._elemLikeBtn = this._element.querySelector(".element__like-button");
         this._elemLikeBtn.addEventListener('click', this._handleLike);
       }
@@ -53,6 +44,5 @@ class Card {
       _handleLike = () => {
         this._elemLikeBtn.classList.toggle("element__like-button_active");
       }
-   
 }
 export default Card;
