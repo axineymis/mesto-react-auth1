@@ -7,6 +7,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js"; 
+import Api from "../components/Api.js";
 
 const popupProfile = document.querySelector(".popup_type_edit");
 const profileForm = document.querySelector('.popup__content-form')
@@ -32,6 +33,8 @@ const contentFormValidation = new FormValidator(config, formImg);
 const profileFormValidation = new FormValidator(config, profileForm);
 const popupWithImage = new PopupWithImage('.popup_type_img');
 
+
+
 const userInfo = new UserInfo({ 
   nameSelector: '.profile__name', 
   userInfoSelector: '.profile__text'});
@@ -48,20 +51,27 @@ const popupPlaceClass = new PopupWithForm({
   popupSelector: '.popup_type_add',
   handleFormSubmit: ({ title, img }) => {
     const newCard = createCard({ name:title, link: img });
-    cards.prependItem(newCard);
+    cardsList.prependItem(newCard);
     popupPlaceClass.close();
   }
 });
 
-const cards = new Section({
+const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
     const card = createCard(item);
-    cards.addItem(card);
+    cardsList.addItem(card);
   },
 },
 ".elements");
-cards.renderItems();
+cardsList.renderItems();
+
+const api = new Api ({
+  address:'https://mesto.nomoreparties.co/v1/cohort-35/',
+  token: '8bcdd003-6ade-478d-94ee-ebb5cd09f115'
+})
+
+
 
 function showPopupAdd() {
   popupPlaceClass.open();
@@ -102,3 +112,9 @@ function handleCardClick(name, link) {
   popupProfileClass.setEventListeners();
   popupPlaceClass.setEventListeners();
   popupWithImage.setEventListeners();
+
+  api.getCards()
+  .then(cards => {
+    cardsList.renderItems(cards);
+  })
+  .catch(err => console.log(err));

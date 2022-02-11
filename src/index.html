@@ -85,6 +85,31 @@
       </div>
   </div>
 
+  <div class="popup popup_type_assent">
+    <div class="popup__overlay"></div>
+      <div class="popup__content-asssent">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="submit"  class="popup__button">Да</button>
+      </div>
+  </div>
+
+  <div class="popup popup_type_profile-img">
+    <div class="popup__overlay"></div>
+      <div class="popup__content-profile">
+        <button type="button" class="popup__close-button">
+          <img src="<%=require('./images/CloseIcon.svg')%>" class="popup__close-icon" alt="Закрыть">
+        </button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="profileFormPicture" class="popup__content-form">
+          <fieldset class="popup__form">
+            <input id="input-img" type="url" name="img" required placeholder="Ссылка на картинку" class="popup__input popup__input_type_img" value="">
+            <span id="input-img-error" class ="error" >Введите ссылку</span>
+          </fieldset>
+          <button type="submit"  class="popup__button popup__button_add-button">Сохранить</button>
+        </form>
+      </div>
+  </div>
+
   <template id="templateCard" class="template__card">
     <div class="element">
       <img src="./images/Карачаевск.jpg" class="element__photo">
