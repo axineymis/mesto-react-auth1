@@ -35,6 +35,7 @@ export default class Api {
               return Promise.reject(`Ошибка ${response.status}`)
           })
     }
+
     getUserInfo() {
       return fetch(`${this._address}/users/me`, {
         headers: {
@@ -47,7 +48,8 @@ export default class Api {
         return Promise.reject(`Ошибка ${response.status}`)
     })
     }
-    patchUserInfo({ name, comment }) {
+
+    patchUserInfo({ name, about }) {
       return fetch(`${this._address}/users/me`, {
         method: 'PATCH',
         headers: {
@@ -56,7 +58,7 @@ export default class Api {
         },
         body: JSON.stringify({
           name: name,
-          comment: comment
+          about: about
         })
       }).then(response => {
         if (response.ok) {
