@@ -3,6 +3,7 @@ class Card {
     constructor(data, selector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
+        this._id = data.id;
         this._selector = selector;
         this._handleCardClick = handleCardClick;
     } 
@@ -35,6 +36,10 @@ class Card {
         this._elemDeleteBtn.addEventListener('click', this._handleDelete);
         this._elemLikeBtn = this._element.querySelector(".element__like-button");
         this._elemLikeBtn.addEventListener('click', this._handleLike);
+      }
+
+      getId() {
+        return this._id;
       }
 
       _handleDelete = () => {

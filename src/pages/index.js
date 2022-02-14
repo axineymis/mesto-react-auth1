@@ -50,9 +50,13 @@ const popupProfileClass = new PopupWithForm({
 const popupPlaceClass = new PopupWithForm({
   popupSelector: '.popup_type_add',
   handleFormSubmit: ({ title, img }) => {
-    const newCard = createCard({ name:title, link: img });
-    cardsList.prependItem(newCard);
-    popupPlaceClass.close();
+    api.addCards({ name:title, link: img })
+      .then(card => {
+        const newCard = createCard(card);
+        cardsList.prependItem(newCard);
+        popupPlaceClass.close();
+      })
+      .catch(err => console.log('Ошибка при добавлении карточки: ${err}'))
   }
 });
 
@@ -118,3 +122,9 @@ function handleCardClick(name, link) {
     cardsList.renderItems(cards);
   })
   .catch(err => console.log(err));
+
+  // api.getUserInfo()
+  // .then(newUserData => {
+  //   userInfo.setUserInfo({ newUserData });
+  // })
+  // .catch(err => console.log(err));
