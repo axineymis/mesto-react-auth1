@@ -8,6 +8,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js"; 
 import Api from "../components/Api.js";
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
+
 
 const popupProfile = document.querySelector(".popup_type_edit");
 const profileForm = document.querySelector('.popup__content-form')
@@ -32,9 +34,6 @@ const config = {
 const contentFormValidation = new FormValidator(config, formImg);
 const profileFormValidation = new FormValidator(config, profileForm);
 const popupWithImage = new PopupWithImage('.popup_type_img');
-
-
-
 const userInfo = new UserInfo({ 
   nameSelector: '.profile__name', 
   userInfoSelector: '.profile__text',
@@ -65,10 +64,11 @@ const popupPlaceClass = new PopupWithForm({
 });
 
 const cardsList = new Section({
-  items: initialCards,
+  // items: initialCards,
   renderer: (item) => {
-    const card = createCard(item);
-    cardsList.addItem(card);
+     return createCard(item)
+    // const card = createCard(item);
+    // cardsList.addItem(card);
   },
 },
 ".elements");
@@ -105,9 +105,21 @@ buttonAdd.addEventListener('click', showPopupAdd);
 
 
 function createCard(data) {
-  const card = new Card(data, '#templateCard', handleCardClick);
+  const card = new Card(data, '#templateCard', handleCardClick, userInfo, handleDeleteBtnClick);
   const cardElement = card.generateCard();
   return cardElement;
+}
+
+const popupDelete = new PopupWithConfirmation(".popup_type_assent");
+function handleDeleteBtnClick(card) {
+  popupDelete.open();
+  popupDelete.setSubmitAction(() => {
+    api.deleteCard(card.getId())
+      .then(() => {
+        card.deleteCard();
+      })
+      .catch(err => console.log(`Карточка не удалилась ${err}`))
+  })
 }
 
 function handleCardClick(name, link) {
@@ -117,6 +129,7 @@ function handleCardClick(name, link) {
   contentFormValidation.enableValidation();
   profileFormValidation.enableValidation();
 
+  popupDelete.setEventListeners();
   popupProfileClass.setEventListeners();
   popupPlaceClass.setEventListeners();
   popupWithImage.setEventListeners();
