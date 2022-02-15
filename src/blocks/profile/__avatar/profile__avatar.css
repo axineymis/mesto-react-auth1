@@ -4,6 +4,7 @@
   margin-right: 32px;
   box-sizing: border-box;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 750px) {

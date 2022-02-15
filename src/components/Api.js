@@ -4,6 +4,7 @@ export default class Api {
       this._token = token;
     }
   
+    // получить карточки
     getCards() {
       return fetch(`${this._address}/cards`, {
         headers: {
@@ -17,6 +18,7 @@ export default class Api {
           })
     }
   
+    // добавление новой карточки на сервер
     addCards({ name, link }) {
       return fetch(`${this._address}/cards`, {
         method: 'POST',
@@ -36,6 +38,54 @@ export default class Api {
           })
     }
 
+    // удалить карточку
+    deleteCard(cardId) {
+      return fetch(`${this._address}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token,
+      }
+    }).then(response => {
+      if (response.ok) {
+          return response.json()
+      }
+      return Promise.reject(`Ошибка ${response.status}`)
+  })
+}
+
+// поставить лайк
+    likeCard(cardId) {
+    return fetch(`${this._address}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: {
+        authorization: this._token,
+  }
+      }).then(response => {
+      if (response.ok) {
+          return response.json()
+      }
+      return Promise.reject(`Ошибка ${response.status}`)
+  })
+  
+    }
+
+    // удалить лайк
+    unlikeCard(cardId) {
+      return fetch(`${this._address}/cards/likes/${cardId}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: this._token,
+    }
+        }).then(response => {
+        if (response.ok) {
+            return response.json()
+        }
+        return Promise.reject(`Ошибка ${response.status}`)
+    })
+    
+      }
+
+    // получить данные пользователя
     getUserInfo() {
       return fetch(`${this._address}/users/me`, {
         headers: {
@@ -49,6 +99,7 @@ export default class Api {
     })
     }
 
+    // отредактировать данные пользователя
     patchUserInfo({ name, about }) {
       return fetch(`${this._address}/users/me`, {
         method: 'PATCH',
@@ -67,6 +118,37 @@ export default class Api {
         return Promise.reject(`Ошибка ${response.status}`)
     })
     }
+    
+    // отредактировать аватар пользователя
+    editUserAvatar(avatar) {
+      return fetch(`${this._address}/users/me/avatar`, {
+        method: 'PATCH',
+        headers: {
+          authorization: this._token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          avatar: avatar
+        })
+      }).then(response => {
+        if (response.ok) {
+            return response.json()
+        }
+        return Promise.reject(`Ошибка ${response.status}`)
+    })
+    }
+
+    // _handleResponse(response) {
+    //   if (response.ok) {
+    //     return response.json(); 
+    //   }
+    //   return Promise.reject(`Возникла ошибка: ${response.status}`); 
+    // }
+
+    // _errorHandler(err) {
+    //   console.log(err);
+    // }
+
   }
   
 

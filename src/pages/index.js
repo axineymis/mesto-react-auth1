@@ -46,6 +46,7 @@ const popupProfileClass = new PopupWithForm({
   handleFormSubmit: ({ name, about, avatar }) => {
     userInfo.setUserInfo({ name, about, avatar });
     api.patchUserInfo({ name, about });
+    api.editUserAvatar({avatar});
     popupProfileClass.close();
   }
 });
@@ -130,15 +131,23 @@ function handleCardClick(name, link) {
     console.log(`${err}`)
   );
 
+  api.editUserAvatar()
+  .then(newUserAvatar => {
+    userInfo.setUserInfo(newUserAvatar);
+  })
+  .catch(err => console.log(err));
 
-  // api.getCards()
-  // .then(cards => {
-  //   cardsList.renderItems(cards);
-  // })
-  // .catch(err => console.log(err));
+
+
 
   // api.getUserInfo()
   // .then(newUserData => {
   //   userInfo.setUserInfo({ newUserData });
+  // })
+  // .catch(err => console.log(err));
+
+  // api.getCards()
+  // .then(cards => {
+  //   cardsList.renderItems(cards);
   // })
   // .catch(err => console.log(err));
