@@ -21,6 +21,7 @@ const buttonAdd = document.querySelector('.profile__add');
  
 const popupAdd = document.querySelector(".popup_type_add");
 const formImg = popupAdd.querySelector('.popup__content-form');
+// const updateAvatarButton = document.querySelector('.profile__avatar');
 
 const config = {
   formSelector: '.popup__content-form',
@@ -45,7 +46,8 @@ const popupProfileClass = new PopupWithForm({
   handleFormSubmit: ({ name, about, avatar }) => {
     userInfo.setUserInfo({ name, about, avatar });
     api.patchUserInfo({ name, about });
-    api.editUserAvatar({avatar});
+    
+    // api.editUserAvatar({avatar});
     popupProfileClass.close();
   }
 });
@@ -63,6 +65,22 @@ const popupPlaceClass = new PopupWithForm({
   }
 });
 
+// const popupWithFormAvatar = new PopupWithForm({
+//   popupSelector: '.popup_type_avatar',
+//   handleFormSubmit: (info) => {
+    
+//     api.editUserAvatar(info.avatar)
+//       .then((avatar) => {
+//         userInfo.setUserInfo(avatar);
+//       })
+//       .catch((err) => {
+//         console.log(err)
+//       })
+//       .finally(() =>
+//         renderLoading(popupAvatar, false))
+//   }
+// })
+
 const cardsList = new Section({
   // items: initialCards,
   renderer: (item) => {
@@ -75,7 +93,7 @@ const cardsList = new Section({
 // cardsList.renderItems();
 
 const api = new Api ({
-  address:'https://mesto.nomoreparties.co/v1/cohort-35/',
+  address:'https://mesto.nomoreparties.co/v1/cohort-35',
   token: '8bcdd003-6ade-478d-94ee-ebb5cd09f115'
 })
 
@@ -99,9 +117,11 @@ function showProfilePopup() {
 }
 
 
-
 buttonEdit.addEventListener('click', showProfilePopup);
 buttonAdd.addEventListener('click', showPopupAdd);
+// updateAvatarButton.addEventListener('click', function() {
+//   popupWithFormAvatar.open();
+// })
 
 
 function createCard(data) {
@@ -144,9 +164,11 @@ function handleCardClick(name, link) {
     console.log(`${err}`)
   );
 
+  
+  
   api.editUserAvatar()
   .then(newUserAvatar => {
-    userInfo.setUserInfo(newUserAvatar);
+    userInfo.getUserInfo(newUserAvatar);
   })
   .catch(err => console.log(err));
 

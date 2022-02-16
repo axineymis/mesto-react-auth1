@@ -121,6 +121,9 @@ export default class Api {
     
     // отредактировать аватар пользователя
     editUserAvatar(avatar) {
+      // avatar = "https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg"
+      
+      console.log(avatar)
       return fetch(`${this._address}/users/me/avatar`, {
         method: 'PATCH',
         headers: {
@@ -134,6 +137,7 @@ export default class Api {
         if (response.ok) {
             return response.json()
         }
+       
         return Promise.reject(`Ошибка ${response.status}`)
     })
     }
