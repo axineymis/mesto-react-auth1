@@ -108,10 +108,13 @@
   <div class="popup popup_type_assent">
     <div class="popup__overlay"></div>
       <div class="popup__content-asssent">
-        <button class="popup__close-button" type="button"></button>
+        <button class="popup__close-button" type="button">
+          <img src="<%=require('./images/CloseIcon.svg')%>" class="popup__close-icon" alt="Закрыть">
+        </button>
         <h2 class="popup__title">Вы уверены?</h2>
-        <form class ="delete__form"></form>
-        <button type="submit"  class="popup__button">Да</button>
+        <form class ="delete-form">
+        <button type="submit"  class="popup__button popup__button-delete">Да</button>
+      </form>
       </div>
   </div>
 
