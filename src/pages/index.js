@@ -46,7 +46,7 @@ const popupProfileClass = new PopupWithForm({
   handleFormSubmit: ({ name, about, avatar }) => {
     userInfo.setUserInfo({ name, about, avatar });
     api.patchUserInfo({ name, about });
-    // api.editUserAvatar({avatar});
+    //api.editUserAvatar(avatar);
     popupProfileClass.close();
   }
 });
@@ -164,11 +164,11 @@ function handleCardClick(name, link) {
 
   
   
-  api.editUserAvatar()
-  .then(newUserAvatar => {
-    userInfo.getUserInfo(newUserAvatar);
-  })
-  .catch(err => console.log(err));
+  // api.editUserAvatar()
+  // .then(newUserAvatar => {
+  //   userInfo.getUserInfo(newUserAvatar);
+  // })
+  // .catch(err => console.log(err));
 
 
 
