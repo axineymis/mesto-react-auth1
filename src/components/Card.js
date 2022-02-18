@@ -83,20 +83,6 @@ class Card {
   //   this._deleteIcon.closest('.element').remove();
   // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     constructor(data, selector, handleCardClick, userInfo, handleDeleteBtnClick, handleLikeClick) {
         this._name = data.name;
         this._link = data.link;
@@ -105,7 +91,7 @@ class Card {
         this._selector = selector;
         this._likes = data.likes || [];
         this._id = data._id;
-        this._isLiked = data.likes.some((like) => userInfo._userId === like._id)
+        this._isLiked = data.likes.some((like) => userInfo._userId === like._id);
         this._handleLikeClick = handleLikeClick;
         this._deletable = data.owner && data.owner._id === userInfo._userId;
         this._element = document
@@ -113,11 +99,11 @@ class Card {
             .content
             .querySelector('.element')
             .cloneNode(true);
-        this._delBtn = this._element.querySelector(".element__delete-btn");
+        // this._delBtn = this._element.querySelector(".element__delete-btn");
     } 
 
     generateCard() {
-
+        this._delBtn = this._element.querySelector(".element__delete-btn");
         this._elemPhoto = this._element.querySelector('.element__photo');
         this._elemPhoto.src = this._link;
         this._elemPhoto.alt = this._name;
@@ -129,6 +115,10 @@ class Card {
           this._cardLikeBtn.classList.add("element__like-button_active");
          }
         return this._element;
+    }
+
+    getId() {
+      return this._id;
     }
 
     showDeleteBtn() {
@@ -155,6 +145,7 @@ class Card {
         this._element.remove();
       }
 
+      //  функция изменения вида лайка
       changeLikeBtnColor(){
         if(this._isLiked){
           this._cardLikeBtn.classList.remove("element__like-button_active");
@@ -163,8 +154,6 @@ class Card {
         }
       }
 
-      
-
       likeAmount = (response) => {
         this.changeLikeBtnColor();
         this._isLiked = !this._isLiked;
@@ -172,8 +161,6 @@ class Card {
         this._element.querySelector(".element__like_counter").textContent = response.likes.length;
       }
 
-      getId() {
-        return this._id;
-      }
+      
  }
 export default Card;
