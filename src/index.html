@@ -89,14 +89,19 @@
   <div class="popup popup_type_avatar">
     <div class="popup__overlay"></div>
     <div class="popup__content">
-      <form class="popup__form" name="editAvatar" novalidate></form>
-        <h2 class="popup__title">Обновить аватар</h2>
-        <input type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_name_link-avatar"
+      <button type="button" class="popup__close-button">
+        <img src="<%=require('./images/CloseIcon.svg')%>" class="popup__close-icon" alt="Закрыть">
+      </button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__content-form" name="editAvatar" novalidate>
+        <fieldset class="popup__form">
+          <input type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_name_link-avatar"
                value="" name="avatar" id="avatar" required>
-        <span class='popup__input-error' id='avatar-input-error'>Заполните это поле.</span>
-        <button type="submit" class="popup__button-save" value="Сохранить" name="submit">
+          <span class='error' id='avatar-input-error'>Заполните это поле.</span>
+        </fieldset> 
+        <button type="submit" class="popup__button" value="Сохранить" name="submit">Сохранить</button>
       </form>
-      <button type="button" class="popup__button-close"></button>
+     
     </div>
   </div>
 
