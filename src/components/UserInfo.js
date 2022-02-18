@@ -6,12 +6,6 @@ export default class UserInfo {
       this._userId = "";
     }
 
-    // constructor({nameSelector, userInfoSelector}) {
-    //   this._name = document.querySelector(nameSelector);
-    //   this._comment = document.querySelector(userInfoSelector);
-      
-    // }
-    
     getUserInfo(){
       return {
         name: this._name.textContent,
@@ -20,13 +14,6 @@ export default class UserInfo {
       };
     }
 
-    // getUserInfo(){
-    //   return {
-    //     name: this._name.textContent,
-    //     comment: this._comment.textContent,
-    //   };
-    // }
-    
     setUserInfo({name, about, avatar, _id}){
       this._name.textContent = name;
       this._about.textContent = about;
