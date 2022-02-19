@@ -74,19 +74,18 @@ function handleDeleteBtnClick(card) {
       .then(() => {
         card.deleteCard();
       })
-      .catch(err => console.log(`Карточка не удалилась ${err}`))
+      .catch(err => console.log(`Карточка не удалилась: ${err}`))
   })
 }
 
 function handleLikeClick(card) {
-  console.log(card)
   if (card.isLiked()) {
     api.unlikeCard(card.getId())
       .then((newLikes) => {
         card.likeAmount(newLikes);
       })
       .catch((err) =>
-        console.log(`${err}`)
+        console.log(`Не удалось снять лайк: ${err}`)
       );
   } else {
     api.likeCard(card.getId())
@@ -94,7 +93,7 @@ function handleLikeClick(card) {
         card.likeAmount(newLikes);
       })
       .catch((err) =>
-        console.log(`${err}`)
+        console.log(`Не удалось поставить лайк: ${err}`)
       );
   }
 }
@@ -102,7 +101,6 @@ function handleLikeClick(card) {
 function handleCardClick(name, link) {
   popupWithImage.open({ name, link });
 }
-
 
 const avatarFormValidation = new FormValidator(config, avatarForm)
 const contentFormValidation = new FormValidator(config, formImg);
@@ -116,11 +114,19 @@ const userInfo = new UserInfo({
 
 const popupProfileClass = new PopupWithForm({
   popupSelector: '.popup_type_edit',
-  handleFormSubmit: ({ name, about, avatar }) => {
-    userInfo.setUserInfo({ name, about, avatar });
-    api.patchUserInfo({ name, about });
-    //api.editUserAvatar(avatar);
-    popupProfileClass.close();
+  handleFormSubmit: ({ name, about}) => {
+    popupProfileClass.showLoading(true);
+    api.patchUserInfo({ name, about })
+      .then((info) => {
+        userInfo.setUserInfo(info);
+        popupProfileClass.close();
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+       popupAvatarClass.showLoading(false, 'Cохранить')
+      })
   }
 });
 
@@ -134,11 +140,11 @@ const popupPlaceClass = new PopupWithForm({
         cardsList.prependItem(newCard);
         popupPlaceClass.close();
       })
-      .catch((err) => console.log('Ошибка при добавлении карточки: ${err}'))
+      .catch((err) => console.log(`Ошибка при добавлении карточки: ${err}`))
       .finally(() => {
         popupProfileClass.showLoading(false, 'Cоздать')
       })
-    }
+  }
 });
 
 const popupAvatarClass = new PopupWithForm({
@@ -153,41 +159,36 @@ const popupAvatarClass = new PopupWithForm({
       .catch((err) => {
         console.log(err)
       })
-       .finally(() => {
+      .finally(() => {
        popupAvatarClass.showLoading(false, 'Cохранить')
-       })
-      }
+      })
+  }
 })
 
 const cardsList = new Section({
-  // items: initialCards,
   renderer: (item) => {
-     return createCard(item)
-    // const card = createCard(item);
-    // cardsList.addItem(card);
+    return createCard(item)
   },
 },
 ".elements");
-// cardsList.renderItems();
 
 const api = new Api ({
   address:'https://mesto.nomoreparties.co/v1/cohort-35',
   token: '8bcdd003-6ade-478d-94ee-ebb5cd09f115'
 })
 
-  contentFormValidation.enableValidation();
-  profileFormValidation.enableValidation();
-  avatarFormValidation.enableValidation();
 
-  popupDelete.setEventListeners();
-  popupProfileClass.setEventListeners();
-  popupPlaceClass.setEventListeners();
-  popupWithImage.setEventListeners();
-  popupAvatarClass.setEventListeners();
+contentFormValidation.enableValidation();
+profileFormValidation.enableValidation();
+avatarFormValidation.enableValidation();
 
-  
+popupDelete.setEventListeners();
+popupProfileClass.setEventListeners();
+popupPlaceClass.setEventListeners();
+popupWithImage.setEventListeners();
+popupAvatarClass.setEventListeners();
 
-  Promise.all([api.getUserInfo(), api.getCards()])
+Promise.all([api.getUserInfo(), api.getCards()])
   .then(([newUserData, cards]) => {
     userInfo.setUserInfo(newUserData);
     cardsList.renderItems(cards);
@@ -198,23 +199,3 @@ const api = new Api ({
 
   
   
-  // api.editUserAvatar()
-  // .then(newUserAvatar => {
-  //   userInfo.getUserInfo(newUserAvatar);
-  // })
-  // .catch(err => console.log(err));
-
-
-
-
-  // api.getUserInfo()
-  // .then(newUserData => {
-  //   userInfo.setUserInfo({ newUserData });
-  // })
-  // .catch(err => console.log(err));
-
-  // api.getCards()
-  // .then(cards => {
-  //   cardsList.renderItems(cards);
-  // })
-  // .catch(err => console.log(err));
