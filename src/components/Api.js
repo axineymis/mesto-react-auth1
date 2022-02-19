@@ -10,12 +10,12 @@ export default class Api {
         headers: {
           authorization: this._token
         }
-          }).then(response => {
-              if (response.ok) {
-                  return response.json()
-              }
-              return Promise.reject(`Ошибка ${response.status}`)
-          })
+      }).then(response => {
+          if (response.ok) {
+            return response.json()
+          }
+          return Promise.reject(`Ошибка ${response.status}`)
+      })
     }
   
     // добавление новой карточки на сервер
@@ -30,43 +30,42 @@ export default class Api {
           name: name,
           link: link
         })
-          }).then(response => {
-              if (response.ok) {
-                  return response.json()
-              }
-              return Promise.reject(`Ошибка ${response.status}`)
-          })
+      }).then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        return Promise.reject(`Ошибка ${response.status}`)
+      })
     }
 
     // удалить карточку
     deleteCard(_id) {
       return fetch(`${this._address}/cards/${_id}`, {
       method: 'DELETE',
-      headers: {
+      headers: { 
         authorization: this._token,
       }
-    }).then(response => {
-      if (response.ok) {
+      }).then(response => {
+        if (response.ok) {
           return response.json()
-      }
-      return Promise.reject(`Ошибка ${response.status}`)
-  })
-}
+        }
+        return Promise.reject(`Ошибка ${response.status}`)
+      })
+    }
 
 // поставить лайк
     likeCard(_id) {
-    return fetch(`${this._address}/cards/likes/${_id}`, {
+      return fetch(`${this._address}/cards/likes/${_id}`, {
       method: 'PUT',
       headers: {
         authorization: this._token,
-  }
-      }).then(response => {
-      if (response.ok) {
-          return response.json()
       }
-      return Promise.reject(`Ошибка ${response.status}`)
-  })
-  
+      }).then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        return Promise.reject(`Ошибка ${response.status}`)
+      })
     }
 
     // удалить лайк
@@ -75,15 +74,14 @@ export default class Api {
         method: 'DELETE',
         headers: {
           authorization: this._token,
-    }
-        }).then(response => {
+        }
+      }).then(response => {
         if (response.ok) {
-            return response.json()
+          return response.json()
         }
         return Promise.reject(`Ошибка ${response.status}`)
-    })
-    
-      }
+      })
+    }
 
     // получить данные пользователя
     getUserInfo() {
@@ -96,7 +94,7 @@ export default class Api {
             return response.json()
         }
         return Promise.reject(`Ошибка ${response.status}`)
-    })
+      })
     }
 
     // отредактировать данные пользователя
@@ -116,14 +114,11 @@ export default class Api {
             return response.json()
         }
         return Promise.reject(`Ошибка ${response.status}`)
-    })
+      })
     }
     
     // отредактировать аватар пользователя
     editUserAvatar(avatar) {
-      // avatar = "https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg"
-      
-      console.log(avatar)
       return fetch(`${this._address}/users/me/avatar`, {
         method: 'PATCH',
         headers: {
@@ -139,7 +134,7 @@ export default class Api {
         }
        
         return Promise.reject(`Ошибка ${response.status}`)
-    })
+      })
     }
 
     // _handleResponse(response) {
