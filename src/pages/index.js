@@ -82,7 +82,7 @@ function handleLikeClick(card) {
   if (card.isLiked()) {
     api.unlikeCard(card.getId())
       .then((newLikes) => {
-        card.likeAmount(newLikes);
+        card.setLikes(newLikes);
       })
       .catch((err) =>
         console.log(`Не удалось снять лайк: ${err}`)
@@ -90,7 +90,7 @@ function handleLikeClick(card) {
   } else {
     api.likeCard(card.getId())
       .then((newLikes) => {
-        card.likeAmount(newLikes);
+        card.setLikes(newLikes);
       })
       .catch((err) =>
         console.log(`Не удалось поставить лайк: ${err}`)

@@ -55,18 +55,17 @@ class Card {
     }
   }
 
-  isLiked(){
-    return this._isLiked;
-  }
-
-  
-
+  // Удаление карточки
   deleteCard = () => {
     this._element.remove();
   }
 
+  isLiked(){
+    return this._isLiked;
+  }
+
   //  функция изменения вида лайка
-  changeLikeBtnColor(){
+  showLikes(){
     if(this._isLiked){
       this._cardLikeBtn.classList.remove("element__like-button_active");
     }else{
@@ -74,8 +73,8 @@ class Card {
     }
   }
 
-  likeAmount = (response) => {
-    this.changeLikeBtnColor();
+  setLikes = (response) => {
+    this.showLikes();
     this._isLiked = !this._isLiked;
     this._likes = response.likes;
     this._element.querySelector(".element__like_counter").textContent = response.likes.length;
