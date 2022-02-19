@@ -79,6 +79,7 @@ function handleDeleteBtnClick(card) {
 }
 
 function handleLikeClick(card) {
+  console.log(card)
   if (card.isLiked()) {
     api.unlikeCard(card.getId())
       .then((newLikes) => {

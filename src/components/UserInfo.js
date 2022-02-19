@@ -10,7 +10,7 @@ export default class UserInfo {
       return {
         name: this._name.textContent,
         about: this._about.textContent,
-        userId: this._userId
+        userId: this._userId,
       };
     }
 

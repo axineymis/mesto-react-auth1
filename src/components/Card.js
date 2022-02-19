@@ -93,7 +93,12 @@ class Card {
         this._id = data._id;
         this._isLiked = data.likes.some((like) => userInfo._userId === like._id);
         this._handleLikeClick = handleLikeClick;
+       
+        // console.log(data.owner._id)
+        // console.log(userInfo._userId)
+        
         this._deletable = data.owner && data.owner._id === userInfo._userId;
+        // console.log(this._deletable)
         this._element = document
             .querySelector(this._selector)
             .content
@@ -104,12 +109,14 @@ class Card {
 
     generateCard() {
         this._delBtn = this._element.querySelector(".element__delete-btn");
+        this._cardLikeBtn = this._element.querySelector(".element__like-button");
         this._elemPhoto = this._element.querySelector('.element__photo');
         this._elemPhoto.src = this._link;
         this._elemPhoto.alt = this._name;
         this._element.querySelector('.element__title').textContent = this._name;
         this._element.querySelector(".element__like_counter").textContent = this._likes.length;
         this.showDeleteBtn();
+
         this._setEventListeners();
         if(this._isLiked) {
           this._cardLikeBtn.classList.add("element__like-button_active");
@@ -122,8 +129,9 @@ class Card {
     }
 
     showDeleteBtn() {
-      if (this._deletable) {
-        this._delBtn.style.display = 'block';
+   
+      if (!this._deletable) {
+        this._delBtn.style.display = 'none';
       }
     }
 
@@ -138,7 +146,8 @@ class Card {
         this._elemLikeBtn = this._element.querySelector(".element__like-button");
         this._elemLikeBtn.addEventListener('click', this._handleLike);
         this._delBtn.addEventListener('click', () => { this._handleDeleteBtnClick(this) });
-        // this._cardLikeBtn.addEventListener('click', () => { this._handleLikeClick(this)});
+        //this._delBtn.addEventListener('click', () => { this._handleLikeClick(this)});
+        this._cardLikeBtn.addEventListener('click', () => { this._handleLikeClick(this)});
       }
 
       deleteCard = () => {
