@@ -7,7 +7,7 @@ class Card {
     this._likes = data.likes;
     this._id = data._id;
     this._isLiked = data.likes.some((like) => userInfo._userId === like._id);
-    this._deletable = data.owner && data.owner._id === userInfo._userId;  
+    this._checkOwnerCard = data.owner && data.owner._id === userInfo._userId;  
     this._element = document
         .querySelector(this._selector)
         .content
@@ -22,12 +22,13 @@ class Card {
 
   _setEventListeners() {
     this._elemPhoto.addEventListener('click', () => { this._handleCardClick(this._name, this._link);});
-    this._delBtn.addEventListener('click', () => { this._handleDeleteBtnClick(this) });
+    this._deleteIcon.addEventListener('click', () => { this._handleDeleteBtnClick(this) });
     this._cardLikeBtn.addEventListener('click', () => { this._handleLikeClick(this)});
   }
 
+  // формирование шаблона карточки
   generateCard() {
-    this._delBtn = this._element.querySelector(".element__delete-btn");
+    this._deleteIcon = this._element.querySelector(".element__delete-btn");
     this._cardLikeBtn = this._element.querySelector(".element__like-button");
     this._elemPhoto = this._element.querySelector('.element__photo');
     this._elemPhoto.src = this._link;
@@ -42,13 +43,15 @@ class Card {
       return this._element;
   }
 
+  //Получаем id карточки
   getId() {
     return this._id;
   }
 
+  // Убираем иконку удаления с карточки другого пользователя
   showDeleteBtn() {
-    if (!this._deletable) {
-      this._delBtn.style.display = 'none';
+    if (!this._checkOwnerCard) {
+      this._deleteIcon.style.display = 'none';
     }
   }
 
