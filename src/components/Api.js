@@ -10,12 +10,7 @@ export default class Api {
         headers: {
           authorization: this._token
         }
-      }).then(response => {
-          if (response.ok) {
-            return response.json()
-          }
-          return Promise.reject(`Ошибка ${response.status}`)
-      })
+      }).then(this._handleResponse)
     }
   
     // добавление новой карточки на сервер
@@ -30,12 +25,7 @@ export default class Api {
           name: name,
           link: link
         })
-      }).then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        return Promise.reject(`Ошибка ${response.status}`)
-      })
+      }).then(this._handleResponse)
     }
 
     // удалить карточку
@@ -45,12 +35,7 @@ export default class Api {
       headers: { 
         authorization: this._token,
       }
-      }).then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        return Promise.reject(`Ошибка ${response.status}`)
-      })
+      }).then(this._handleResponse)
     }
 
 // поставить лайк
@@ -60,12 +45,7 @@ export default class Api {
       headers: {
         authorization: this._token,
       }
-      }).then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        return Promise.reject(`Ошибка ${response.status}`)
-      })
+      }).then(this._handleResponse)
     }
 
     // удалить лайк
@@ -75,12 +55,7 @@ export default class Api {
         headers: {
           authorization: this._token,
         }
-      }).then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        return Promise.reject(`Ошибка ${response.status}`)
-      })
+      }).then(this._handleResponse)
     }
 
     // получить данные пользователя
@@ -89,12 +64,7 @@ export default class Api {
         headers: {
           authorization: this._token
         }
-      }).then(response => {
-        if (response.ok) {
-            return response.json()
-        }
-        return Promise.reject(`Ошибка ${response.status}`)
-      })
+      }).then(this._handleResponse)
     }
 
     // отредактировать данные пользователя
@@ -109,12 +79,7 @@ export default class Api {
           name: name,
           about: about
         })
-      }).then(response => {
-        if (response.ok) {
-            return response.json()
-        }
-        return Promise.reject(`Ошибка ${response.status}`)
-      })
+      }).then(this._handleResponse)
     }
     
     // отредактировать аватар пользователя
@@ -128,26 +93,15 @@ export default class Api {
         body: JSON.stringify({
           avatar: avatar
         })
-      }).then(response => {
-        if (response.ok) {
-            return response.json()
-        }
-       
-        return Promise.reject(`Ошибка ${response.status}`)
-      })
+      }).then(this._handleResponse)
     }
 
-    // _handleResponse(response) {
-    //   if (response.ok) {
-    //     return response.json(); 
-    //   }
-    //   return Promise.reject(`Возникла ошибка: ${response.status}`); 
-    // }
-
-    // _errorHandler(err) {
-    //   console.log(err);
-    // }
-
+    _handleResponse(response) {
+      if (response.ok) {
+        return response.json(); 
+      }
+      return Promise.reject(`Возникла ошибка: ${response.status}`); 
+    }
   }
   
 

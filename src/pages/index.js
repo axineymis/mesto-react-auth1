@@ -1,8 +1,8 @@
 import "./index.css";
 
+import { config } from "../utils/constants.js";
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import {initialCards} from '../components/data.js';
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -26,15 +26,6 @@ const buttonAvatar = document.querySelector('.profile__avatar');
 const popupAvatar = document.querySelector(".popup_type_avatar");
 const avatarForm = popupAvatar.querySelector(".popup__content-form");
 
-const config = {
-  formSelector: '.popup__content-form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'error_visible'
-};
-
 const avatarFormValidation = new FormValidator(config, avatarForm)
 const contentFormValidation = new FormValidator(config, formImg);
 const profileFormValidation = new FormValidator(config, profileForm);
@@ -49,7 +40,7 @@ const userInfo = new UserInfo({
 function showPopupAdd() {
   popupPlaceClass.open();
   contentFormValidation.removeInputError();
-  contentFormValidation._toggleButtonError();
+  contentFormValidation.toggleButtonError();
 }
 
 // Открытие попапа профиля
@@ -66,7 +57,7 @@ function showProfilePopup() {
 function showAvatarPopup() {
   popupAvatarClass.open();
   avatarFormValidation.removeInputError();
-  avatarFormValidation._toggleButtonError()
+  avatarFormValidation.toggleButtonError()
 }
 
 buttonEdit.addEventListener('click', showProfilePopup);
@@ -174,6 +165,7 @@ function handleDeleteBtnClick(card) {
     api.deleteCard(card.getId())
       .then(() => {
         card.deleteCard();
+        popupDelete.close();
       })
       .catch(err => console.log(`Карточка не удалилась: ${err}`))
   })
