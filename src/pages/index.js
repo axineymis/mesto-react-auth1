@@ -1,6 +1,16 @@
 import "./index.css";
 
 import { config } from "../utils/constants.js";
+import {
+  profileForm,
+  nameInput,
+  textInput,
+  buttonEdit,
+  buttonAdd,
+  formImg,
+  buttonAvatar,
+  avatarForm,
+} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from "../components/Section.js";
@@ -10,21 +20,6 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 
-
-const popupProfile = document.querySelector(".popup_type_edit");
-const profileForm = document.querySelector('.popup__content-form')
-const nameInput = popupProfile.querySelector('.popup__input_type_name');
-const textInput = popupProfile.querySelector('.popup__input_type_text');
-
-const buttonEdit = document.querySelector('.profile__edit-button');
-const buttonAdd = document.querySelector('.profile__add');
- 
-const popupAdd = document.querySelector(".popup_type_add");
-const formImg = popupAdd.querySelector('.popup__content-form');
-const buttonAvatar = document.querySelector('.profile__avatar');
-
-const popupAvatar = document.querySelector(".popup_type_avatar");
-const avatarForm = popupAvatar.querySelector(".popup__content-form");
 
 const avatarFormValidation = new FormValidator(config, avatarForm)
 const contentFormValidation = new FormValidator(config, formImg);
