@@ -4,12 +4,7 @@ class Api {
     this._address = address;
     this._token = token;
   }
-  _handleResponse = (response) => {
-    if (response.ok) {
-      return response.json();
-    }
-    return Promise.reject(`Ошибка ${response.status}`);
-  }
+ 
   getCards() {
     return fetch(`${this._address}/cards`, {
       headers: {
@@ -17,6 +12,49 @@ class Api {
       }
     }).then(this._handleResponse)
   }
+
+  addCards({ name, link }) {
+    return fetch(`${this._address}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        link: link
+      })
+    }).then(this._handleResponse)
+  }
+
+  deleteCard(_id) {
+    return fetch(`${this._address}/cards/${_id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token
+      }
+    })
+      .then(this._handleResponse)
+  }
+
+  likeCard(id) {
+    return fetch(`${this._address}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: {
+        authorization: this._token
+      },
+    }).then(this._handleResponse);
+  }
+
+  unlikeCard(id) {
+    return fetch(`${this._address}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._token
+      },
+    }).then(this._handleResponse);
+  }
+
   getUserInfo() {
     console.log(`${this._address}/users/me`)
     return fetch(`${this._address}/users/me`, {
@@ -25,6 +63,7 @@ class Api {
       }
     }).then(this._handleResponse)
   }
+
   patchUserInfo({ name, about }) {
     return fetch(`${this._address}/users/me`, {
       method: 'PATCH',
@@ -38,29 +77,9 @@ class Api {
       })
     }).then(this._handleResponse)
   }
-  addCard({ name, link }) {
-    return fetch(`${this._address}/cards`, {
-      method: 'POST',
-      headers: {
-        authorization: this._token,
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        link: link
-      })
-    }).then(this._handleResponse)
-  }
-  deleteCard(_id) {
-    return fetch(`${this._address}/cards/${_id}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: this._token
-      }
-    })
-      .then(this._handleResponse)
-  }
-  patchAvatar(avatar) {
+
+  
+  editUserAvatar(avatar) {
     console.log(`${this._address}/users/me/avatar`)
     return fetch(`${this._address}/users/me/avatar`, {
       method: 'PATCH',
@@ -73,21 +92,13 @@ class Api {
       })
     }).then(this._handleResponse)
   }
-  putLike(id) {
-    return fetch(`${this._address}/cards/${id}/likes`, {
-      method: "PUT",
-      headers: {
-        authorization: this._token
-      },
-    }).then(this._handleResponse);
-  }
-  deleteLike(id) {
-    return fetch(`${this._address}/cards/${id}/likes`, {
-      method: "DELETE",
-      headers: {
-        authorization: this._token
-      },
-    }).then(this._handleResponse);
+ 
+
+  _handleResponse = (response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(`Ошибка ${response.status}`);
   }
 }
 const api = new Api({

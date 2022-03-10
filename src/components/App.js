@@ -13,16 +13,16 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({ name: '', link: '' });
 
-  function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(true);
-  }
-
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
+  }
+  
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
   }
 
   function closeAllPopups() {
@@ -32,8 +32,8 @@ function App() {
     setSelectedCard({ name: '', link: '' })
   }
 
-  function handleCardClick(cardInfo) {
-    setSelectedCard({ name: cardInfo.name, link: cardInfo.link });
+  function handleCardClick(cardData) {
+    setSelectedCard({ name: cardData.name, link: cardData.link });
   }
   
   return (
@@ -64,9 +64,9 @@ function App() {
             maxLength="40"
             required
           />
-          <span id='input-name-error'
+          <span 
+            id='input-name-error'
             className="error">
-            Заполните это поле
           </span>
          
           <input 
@@ -82,7 +82,6 @@ function App() {
           <span
             id='input-text-error'
             className="error">
-            Вы пропустили это поле
           </span>
         </PopupWithForm>
         <PopupWithForm
@@ -92,7 +91,8 @@ function App() {
           onClose={closeAllPopups}
           buttonText='Создать'
         >
-          <input id="input-add"
+          <input 
+            id="input-add"
             className="popup__input popup__input_type_title"
             type="text" name="title"
             defaultValue=""
@@ -104,7 +104,6 @@ function App() {
           <span
             id='input-add-error'
             className="error">
-            Вы пропустили это поле
           </span>
           <input
             id="input-img"
@@ -117,7 +116,6 @@ function App() {
           <span
             id='input-img-error'
             className="error">
-            Введите адрес сайта
           </span>
         </PopupWithForm>
         <PopupWithForm
@@ -139,7 +137,6 @@ function App() {
           <span
             id='avatar-link-error'
             className="error">
-            Введите адрес сайта
           </span>
         </PopupWithForm>
         <PopupWithForm
