@@ -2,7 +2,6 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
-import '../index.css';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup'; ;
 
@@ -33,7 +32,7 @@ function App() {
   }
 
   function handleCardClick(cardData) {
-    setSelectedCard({ name: cardData.name, link: cardData.link });
+    setSelectedCard(cardData);
   }
   
   return (
