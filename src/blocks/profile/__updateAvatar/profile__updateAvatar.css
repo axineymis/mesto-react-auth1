@@ -18,3 +18,10 @@
     opacity: 0.2;
     z-index: 5;
   }
+
+  @media screen and (max-width: 750px) {
+    .profile__updateAvatar {
+     top: 20%;
+     left: 47%;
+    }
+  }
