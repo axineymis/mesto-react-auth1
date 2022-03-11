@@ -2,7 +2,7 @@ import editButtonPic from '../images/EditIcon.svg'
 import addButtonPic from '../images/AddIcon.svg'
 import '../index.css';
 import React from 'react';
-import api from '../utils/api';
+import api from '../utils/Api';
 import Card from './Card';
 
 function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
