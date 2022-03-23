@@ -90,6 +90,10 @@ class Api {
       })
     }).then(this._handleResponse)
   }
+
+  changeLikeCard(id, isLiked) {
+    return isLiked ? this.unlikeCard(id) : this.likeCard(id);
+  }
  
 
   _handleResponse = (response) => {

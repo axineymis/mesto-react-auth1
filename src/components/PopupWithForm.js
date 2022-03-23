@@ -14,11 +14,13 @@ function PopupWithForm(props) {
                   <img src={closeIcon} className="popup__close-icon" alt="Закрыть"/>
                 </button>
                 <h2 className="popup__title">{props.title}</h2>
-                <form className="popup__content-form" name={`${props.name}`}>
+                <form className="popup__content-form" name={`${props.name}`} onSubmit={props.onSubmit}>
                   <fieldset className="popup__form">
                     {props.children}
                   </fieldset>
-                    <button className="popup__button" type="submit"> {props.buttonText}
+                    <button className="popup__button" type="submit">
+                       {" "}
+                       {props.buttonText}
                     </button>
                 </form>
             </div>
