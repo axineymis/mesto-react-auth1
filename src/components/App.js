@@ -4,7 +4,7 @@ import Footer from './Footer';
 import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup'; 
-import "../index.css";
+
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api.js";
 import EditProfilePopup from "../components/EditProfilePopup";
@@ -46,9 +46,12 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then(() => {
-      setCards((state) => state.filter((c) => c._id !== card._id));
-    });
+    api 
+       .deleteCard(card._id)
+       .then(() => {
+         setCards((state) => state.filter((c) => c._id !== card._id));
+       })
+       .catch((err) => `Не удалось удалить карточку ${err}`);
   }
 
   function handleEditProfileClick() {
