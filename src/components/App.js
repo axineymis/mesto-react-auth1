@@ -1,16 +1,12 @@
 import React from 'react';
 import Header from './Header';
-import Footer from './Footer';
 import Main from './Main';
-import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup'; 
-
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from "../utils/api.js";
 import EditProfilePopup from "../components/EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
@@ -21,10 +17,8 @@ import InfoToolTip from './InfoToolTip';
 import successRegistration from "../images/Union(1).svg"
 import unSuccessRegistration from "../images/Union(2).svg"
 import ConfirmDeletePopup from './ConfirmDeletePopup';
-// import {defaultUser} from '../utils/constants';
 
 function App() {
-  
   
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
@@ -36,7 +30,6 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [messageTooltip, setMessageTooltip] = React.useState({});
   const [isDeletePopupOpen, setIsDeletePopupOpen] = React.useState(false);
-  
   const [isDeleteCard, setIsDeleteCard]= React.useState('');
 
   const history = useHistory();
@@ -46,7 +39,6 @@ function App() {
     onEditAvatar: handleEditAvatarClick,
     onCardClick: handleCardClick,
     onCardLike: handleCardLike,
-    // onCardDelete: handleCardDelete,
     onConfirmDelete: handleDeletePopupOpen,
     cards: cards
   }
@@ -100,7 +92,6 @@ function App() {
   function handleDeletePopupOpen(card) {
     console.log(34)
     setIsDeletePopupOpen(true);
-
     setIsDeleteCard(card._id);
   }
 
@@ -165,13 +156,11 @@ function App() {
         localStorage.setItem('jwt', token)
         setLoggedIn(true)
         history.push('/')
-       
       })
       .catch((err) => {
         console.log(err);
         setIsTooltipPopupOpen(true)
         setMessageTooltip({ message: "Что-то пошло не так! Попробуйте еще раз.", img: unSuccessRegistration })
-
       })
   }
 
@@ -195,8 +184,6 @@ function App() {
     history.push('/sign-in')
   }
 
-
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="body">
@@ -205,9 +192,9 @@ function App() {
            onSignOut={signOut}/>
         <Switch>
         <ProtectedRoute  exact path="/" 
-        loggedIn={loggedIn} 
-        component={Main} 
-        propsMain={propsMain} />
+          loggedIn={loggedIn} 
+          component={Main} 
+          propsMain={propsMain} />
         <Route path="/sign-in">
               {loggedIn ? <Redirect to='/' /> : <Login
                 onSubmit={onHandleSubmitAuthorization}
@@ -219,65 +206,43 @@ function App() {
                 onSubmit={onHandleSubmitRegistration}
                 buttonText="Зарегистрироваться"
               />}
-            </Route>
-            <Route path="*">
-              <Redirect to='/sign-in' />
-            </Route>
-            </Switch>
-            </div>
-         {/* <Main
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
-          cards={cards}
-        />  */}
-        {/* <Footer /> */}
-        <EditProfilePopup
-            onClose={closeAllPopups}
-            isOpen={isEditProfilePopupOpen}
-            onUpdateUser={handleUpdateUser}
-          />
-          <AddPlacePopup
-            onClose={closeAllPopups}
-            isOpen={isAddPlacePopupOpen}
-            onAddCard={handleAddCard}
-          />
-          <EditAvatarPopup
-            onClose={closeAllPopups}
-            isOpen={isEditAvatarPopupOpen}
-            onUpdateAvatar={handleUpdateAvatar}
-          />
-        
-        {/* <PopupWithForm
-          title='Вы уверены?'
-          name='element'
-          buttonText='Да'
-        >
-        </PopupWithForm> */}
-        <InfoToolTip
-          name="infotooltip"
-          isOpen={isTooltipPopupOpen}
-          messageTooltip={messageTooltip}
-          onClose={closeAllPopups}
-        />
-        <ConfirmDeletePopup
-        // title="Вы уверены?"
+        </Route>
+        <Route path="*">
+          <Redirect to='/sign-in' />
+        </Route>
+        </Switch>
+      </div>
+      <EditProfilePopup
+        onClose={closeAllPopups}
+        isOpen={isEditProfilePopupOpen}
+        onUpdateUser={handleUpdateUser}
+      />
+      <AddPlacePopup
+        onClose={closeAllPopups}
+        isOpen={isAddPlacePopupOpen}
+        onAddCard={handleAddCard}
+      />
+      <EditAvatarPopup
+        onClose={closeAllPopups}
+        isOpen={isEditAvatarPopupOpen}
+        onUpdateAvatar={handleUpdateAvatar}
+      />
+      <ConfirmDeletePopup
         isOpen={isDeletePopupOpen}
         onClose={closeAllPopups}
         handleCardDelete={handleCardDelete}
-        // name='confirmDelete'
-        // buttonText='Да'
-        
-        />
-        <ImagePopup
-          card={selectedCard}
-          onClose={closeAllPopups}
-        />
+      />
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
+      <InfoToolTip
+        name="infotooltip"
+        isOpen={isTooltipPopupOpen}
+        messageTooltip={messageTooltip}
+        onClose={closeAllPopups}
+      />
       </div>
-    
     </CurrentUserContext.Provider>
   );
 }

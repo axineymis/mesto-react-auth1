@@ -1,4 +1,5 @@
 import React from "react";
+
 function InfoToolTip(props) {
   const { messageTooltip } = props;
   return (
@@ -10,10 +11,19 @@ function InfoToolTip(props) {
       }
     >
       <div className="popup__overlay" onClick={props.onClose}></div>
-      <div className="popup__content" style={{ alignItems: "center" }}>
-        <img
+      <div className="popup__content" 
+        style={{ display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: 400,
+      }}>
+       <img
           className="tooltipPic"
-          style={{ width: 120, paddingTop: 60 }}
+          style={{ 
+            width: 120,
+            height: 120,
+            paddingTop: 60
+          }}
           alt={messageTooltip.message}
           src={messageTooltip.img}
         ></img>
@@ -24,7 +34,9 @@ function InfoToolTip(props) {
         ></button>
         <h2
           className="popup__title"
-          style={{ textAlign: "center", margin: 36 }}
+          style={{ 
+            textAlign: "center", 
+            margin: 36 }}
         >
           {messageTooltip.message}
         </h2>
