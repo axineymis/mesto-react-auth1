@@ -4,6 +4,7 @@ import React from 'react';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import api from '../utils/api.js';
 import Card from './Card';
+import Footer from "./Footer";
 
 function Main({ 
   onEditProfile, 
@@ -11,7 +12,7 @@ function Main({
   onAddPlace, 
   onCardClick,
   onCardLike,
-  onCardDelete,
+  onConfirmDelete,
   cards,
  }) {
   const currentUser = React.useContext(CurrentUserContext);
@@ -57,12 +58,12 @@ function Main({
             card={card}
             onCardClick={onCardClick}
             onCardLike={onCardLike}
-            onCardDelete={onCardDelete}
+            onConfirmDelete={onConfirmDelete}
           />
         ))}
       </section>
-
+      <Footer />
     </main>
-  )
+  );
 }
 export default Main;

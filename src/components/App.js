@@ -18,8 +18,8 @@ import ProtectedRoute from './ProtectedRoute';
 import auth from '../utils/auth';
 import { Redirect } from 'react-router-dom';
 import InfoToolTip from './InfoToolTip';
-// import successRegistration from "../images/Union.png"
-// import unSuccessRegistration from "../images/Union2.png"
+import successRegistration from "../images/Union(1).svg"
+import unSuccessRegistration from "../images/Union(2).svg"
 import ConfirmDeletePopup from './ConfirmDeletePopup';
 // import {defaultUser} from '../utils/constants';
 
@@ -33,10 +33,12 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({ name: '', link: '' });
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
-  const [loggedIn, setLoggedIn] = React.useState(false)
-  const [messageTooltip, setMessageTooltip] = React.useState({})
-  const [isDeletePopupOpen, setisDeletePopupOpen] = React.useState(false)
-  const [isDeleteCard, setIsDeleteCard]= React.useState('')
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [messageTooltip, setMessageTooltip] = React.useState({});
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = React.useState(false);
+  
+  const [isDeleteCard, setIsDeleteCard]= React.useState('');
+
   const history = useHistory();
   const propsMain = {
     onEditProfile: handleEditProfileClick,
@@ -44,7 +46,8 @@ function App() {
     onEditAvatar: handleEditAvatarClick,
     onCardClick: handleCardClick,
     onCardLike: handleCardLike,
-    onCardDelet: handleCardDelete,
+    // onCardDelete: handleCardDelete,
+    onConfirmDelete: handleDeletePopupOpen,
     cards: cards
   }
 
@@ -73,13 +76,17 @@ function App() {
        });
   }
 
-  function handleCardDelete(card) {
-    api 
-       .deleteCard(card._id)
+  function handleCardDelete() {
+    api.deleteCard(isDeleteCard)
+       
        .then(() => {
-         setCards((state) => state.filter((c) => c._id !== card._id));
+         setCards((state) => state.filter((c) => c._id !== isDeleteCard));
        })
        .catch((err) => `Не удалось удалить карточку ${err}`);
+  }
+
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
@@ -90,13 +97,11 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
   
-  function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(true);
-  }
-
   function handleDeletePopupOpen(card) {
-    setisDeletePopupOpen(true);
-    setIsDeleteCard(card._id)
+    console.log(34)
+    setIsDeletePopupOpen(true);
+
+    setIsDeleteCard(card._id);
   }
 
   function closeAllPopups() {
@@ -105,7 +110,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setSelectedCard({ name: '', link: '' });
     setIsTooltipPopupOpen(false);
-    setisDeletePopupOpen(false)
+    setIsDeletePopupOpen(false)
   }
 
   function handleCardClick(cardData) {
@@ -144,12 +149,12 @@ function App() {
         setCurrentUser({ ...currentUser, email })
         history.push("/sign-in")
         setIsTooltipPopupOpen(true)
-        setMessageTooltip({ message: "Вы успешно зарегистрировались!" })
+        setMessageTooltip({ message: "Вы успешно зарегистрировались!", img: successRegistration })
       })
       .catch((err) => {
         console.log(err);
         setIsTooltipPopupOpen(true)
-        setMessageTooltip({ message: "Что-то пошло не так! Попробуйте еще раз." })
+        setMessageTooltip({ message: "Что-то пошло не так! Попробуйте еще раз.", img: unSuccessRegistration })
 
       })
   }
@@ -165,7 +170,7 @@ function App() {
       .catch((err) => {
         console.log(err);
         setIsTooltipPopupOpen(true)
-        setMessageTooltip({ message: "Что-то пошло не так! Попробуйте еще раз." })
+        setMessageTooltip({ message: "Что-то пошло не так! Попробуйте еще раз.", img: unSuccessRegistration })
 
       })
   }
@@ -173,10 +178,12 @@ function App() {
   function checkTocken() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-      setLoggedIn(true)
+      
       auth.getUser(jwt)
         .then(({ data: { email } }) => {
-          setCurrentUser({ ...currentUser, email })
+          setCurrentUser({ ...currentUser, email });
+          setLoggedIn(true);
+          history.push("/");
         })
         .catch((err)=> console.log(err))
     }
@@ -188,14 +195,19 @@ function App() {
     history.push('/sign-in')
   }
 
+
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="body">
       <div className="page">
         <Header 
-          onSignOut={signOut}/>
+           onSignOut={signOut}/>
         <Switch>
-        <ProtectedRoute loggedIn={loggedIn} exact path="/" component={Main} propsMain={propsMain} />
+        <ProtectedRoute  exact path="/" 
+        loggedIn={loggedIn} 
+        component={Main} 
+        propsMain={propsMain} />
         <Route path="/sign-in">
               {loggedIn ? <Redirect to='/' /> : <Login
                 onSubmit={onHandleSubmitAuthorization}
@@ -251,13 +263,14 @@ function App() {
           messageTooltip={messageTooltip}
           onClose={closeAllPopups}
         />
-          <ConfirmDeletePopup
+        <ConfirmDeletePopup
         title="Вы уверены?"
+        isOpen={isDeletePopupOpen}
         onClose={closeAllPopups}
         handleCardDelete={handleCardDelete}
         name='confirmDelete'
         buttonText='Да'
-        isOpen={isDeletePopupOpen}
+        
         />
         <ImagePopup
           card={selectedCard}
