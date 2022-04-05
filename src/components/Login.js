@@ -19,7 +19,7 @@ function Login(props) {
   
   return (
     <section className="auth">
-      <h2 className="auth__heading">Вход</h2>
+      <h2 className="auth__title">Вход</h2>
       <form className="auth__form" onSubmit={handleSubmitLogin}>
         <input
           className="auth__input"

@@ -20,7 +20,7 @@ function Register(props) {
 
     return (
       <section className="auth">
-        <h2 className="auth__heading">Регистрация</h2>
+        <h2 className="auth__title">Регистрация</h2>
         <form className="auth__form" onSubmit={handleSubmitRegistration}>
           <input
             className="auth__input"
