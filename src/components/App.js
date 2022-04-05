@@ -251,12 +251,12 @@ function App() {
             onUpdateAvatar={handleUpdateAvatar}
           />
         
-        <PopupWithForm
+        {/* <PopupWithForm
           title='Вы уверены?'
           name='element'
           buttonText='Да'
         >
-        </PopupWithForm>
+        </PopupWithForm> */}
         <InfoToolTip
           name="infotooltip"
           isOpen={isTooltipPopupOpen}
@@ -264,12 +264,12 @@ function App() {
           onClose={closeAllPopups}
         />
         <ConfirmDeletePopup
-        title="Вы уверены?"
+        // title="Вы уверены?"
         isOpen={isDeletePopupOpen}
         onClose={closeAllPopups}
         handleCardDelete={handleCardDelete}
-        name='confirmDelete'
-        buttonText='Да'
+        // name='confirmDelete'
+        // buttonText='Да'
         
         />
         <ImagePopup
