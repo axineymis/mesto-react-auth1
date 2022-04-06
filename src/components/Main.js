@@ -2,7 +2,6 @@ import editButtonPic from '../images/EditIcon.svg'
 import addButtonPic from '../images/AddIcon.svg'
 import React from 'react';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import api from '../utils/api.js';
 import Card from './Card';
 import Footer from "./Footer";
 
