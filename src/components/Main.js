@@ -16,21 +16,6 @@ function Main({
   cards,
  }) {
   const currentUser = React.useContext(CurrentUserContext);
-  // const [userName, setUserName] = React.useState('');
-  // const [userDescription, setUserDescription] = React.useState('');
-  // const [userAvatar, setUserAvatar] = React.useState('');
-  // const [cards, setCards] = React.useState([]);
-  // React.useEffect(() => {
-  //   Promise.all([ api.getUserInfo(), api.getCards()])
-  //   .then(([userInfo, cards]) => {
-  //     setUserName(userInfo.name)
-  //     setUserDescription(userInfo.about)
-  //     setUserAvatar(userInfo.avatar)
-  //     setCards(cards);
-  //   })
-  //     .catch(err => `Не удалось получить карточки с сервера : ${err}`)
-  // }, []);
-
   return (
     <main className="content">
 
